@@ -1,5 +1,5 @@
 import { Admin } from '../pages/Admin'
-import { Auth } from '../pages/Auth'
+import { Auth } from '../pages/Auth/Auth'
 import { Orders } from '../pages/Orders'
 import { ProductDetails } from '../pages/ProductDetails'
 import { ProductsList } from '../pages/ProductsList'
