@@ -1,12 +1,7 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import ProductStore from './store/ProductStore'
-import UserStore from './store/UserStore'
-
 import App from './App'
-
-export const Context = createContext<any | null>(null)
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -14,11 +9,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <Context.Provider value={{
-            user: new UserStore(),
-            product: new ProductStore(),
-        }}>
-            <App />
-        </Context.Provider>
+        <App />
     </React.StrictMode>,
 )

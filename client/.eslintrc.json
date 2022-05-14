@@ -158,7 +158,7 @@
         "operator-linebreak": ["error", "before"],
         "implicit-arrow-linebreak": "off",
         "react/jsx-closing-tag-location": "error",
-        "object-curly-spacing": [2, "always"],
+        "object-curly-spacing": ["error", "always"],
         "no-duplicate-imports": ["error"],
         "react/function-component-definition": [
             "error",

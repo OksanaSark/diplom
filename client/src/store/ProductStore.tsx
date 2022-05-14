@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 import { ICategory, IProduct } from '../servises/types/types'
 
-export default class ProductStore {
+export class ProductStore {
     private _categories: ICategory[]
     private _products: IProduct[]
 
@@ -38,17 +38,17 @@ export default class ProductStore {
         makeAutoObservable(this)
     }
 
-    setCategories(categories: ICategory[]) {
-        this._categories = categories
-    }
-    setProducts(products: IProduct[]) {
-        this._products = products
-    }
-
     get categories() {
         return this._categories
     }
     get products() {
         return this._products
+    }
+
+    setCategories(categories: ICategory[]) {
+        this._categories = categories
+    }
+    setProducts(products: IProduct[]) {
+        this._products = products
     }
 }

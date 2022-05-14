@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 import { IUser } from '../servises/types/types'
 
-export default class UserStore {
+export class UserStore {
     private _isAuth: boolean
     private _user: object = {}
     constructor() {
@@ -11,16 +11,17 @@ export default class UserStore {
         makeAutoObservable(this)
     }
 
-    setIsAuth(isAuth: boolean) {
-        this._isAuth = isAuth
-    }
-    setUser(user: IUser) {
-        this._user = user
-    }
     get isAuth() {
         return this._isAuth
     }
     get user() {
         return this._user
+    }
+
+    setIsAuth(isAuth: boolean) {
+        this._isAuth = isAuth
+    }
+    setUser(user: IUser) {
+        this._user = user
     }
 }
