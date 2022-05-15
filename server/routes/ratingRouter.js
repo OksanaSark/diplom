@@ -1,8 +1,8 @@
 const Router = require('express')
 const router = new Router()
 const ratingController = require('../controllers/ratingController')
+const authMiddleware = require('../middleware/authMiddleware')
 
-router.post('/', ratingController.create)
-router.get('/:productId', ratingController.getAll)
+router.post('/', authMiddleware, ratingController.create)
 
 module.exports = router
