@@ -4,46 +4,47 @@ import { Orders } from '../pages/Orders'
 import { ProductDetails } from '../pages/ProductDetails'
 import { ProductsList } from '../pages/ProductsList'
 import { Shop } from '../pages/Shop'
-import {
-    ADMIN_ROUTE,
-    LOGIN_ROUTE,
-    ORDERS_ROUTE,
-    PRODUCT_LIST_ROUTE,
-    PRODUCT_ROUTE,
-    REGISTRATION_ROUTE,
-    SHOP_ROUTE,
-} from '../utils/consts'
+
+export enum Routes {
+    AdminRoute = '/admin',
+    LoginRoute = '/login',
+    RegistrationRoute = '/registration',
+    ShopRoute = '/',
+    OrdersRoute = '/orders',
+    ProductListRoute = '/products',
+    ProductRoute = '/product'
+}
 
 export const authRoutes = [
     {
-        path: ADMIN_ROUTE,
+        path: Routes.AdminRoute,
         Component: Admin,
     },
     {
-        path: ORDERS_ROUTE,
+        path: Routes.OrdersRoute,
         Component: Orders,
     },
 ]
 
 export const publicRoutes = [
     {
-        path: SHOP_ROUTE,
+        path: Routes.ShopRoute,
         Component: Shop,
     },
     {
-        path: LOGIN_ROUTE,
+        path: Routes.LoginRoute,
         Component: Auth,
     },
     {
-        path: REGISTRATION_ROUTE,
+        path: Routes.RegistrationRoute,
         Component: Auth,
     },
     {
-        path: PRODUCT_LIST_ROUTE,
+        path: Routes.ProductListRoute,
         Component: ProductsList,
     },
     {
-        path: PRODUCT_ROUTE + '/:id',
+        path: Routes.ProductRoute + '/:id',
         Component: ProductDetails,
     },
 ]
