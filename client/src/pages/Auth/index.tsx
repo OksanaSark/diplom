@@ -5,13 +5,13 @@ import { AuthForm } from '../../components/AuthForm'
 import { Logo } from '../../components/Logo'
 
 import Icons from '../../assets/media/icons/Icons'
-import { REGISTRATION_ROUTE } from '../../utils/consts'
+import { Routes } from '../../routes'
 
 import AuthComponent from './styles'
 
 export const Auth = () => {
     const location = useLocation()
-    const isRegistration = location.pathname === REGISTRATION_ROUTE
+    const isRegistration = location.pathname === Routes.RegistrationRoute
 
     return (
         <AuthComponent>
@@ -20,7 +20,7 @@ export const Auth = () => {
                 <p className={'title'}>Добро пожаловать</p>
                 <AuthForm isRegistration={isRegistration} />
                 {!isRegistration
-                && <NavLink className={'registration'} to={REGISTRATION_ROUTE}>
+                && <NavLink className={'registration'} to={Routes.RegistrationRoute}>
                     <p className={'registrationText'}>Зарегистрироваться</p>
                     <img src={Icons.ArrowRight} className={'arrowIcon'}/>
                 </NavLink>
