@@ -22,7 +22,7 @@
         "react",
         "@typescript-eslint",
         "simple-import-sort",
-         "simple-import-sort/imports",
+        "simple-import-sort/imports",
         "react-hooks"
     ],
     "rules": {
@@ -157,8 +157,7 @@
         "curly": ["error", "all"],
         "operator-linebreak": ["error", "before"],
         "implicit-arrow-linebreak": "off",
-        "react/jsx-closing-tag-location": "error",
-        "object-curly-spacing": ["error", "always"],
+        "object-curly-spacing": [2, "always"],
         "no-duplicate-imports": ["error"],
         "react/function-component-definition": [
             "error",
