@@ -1,21 +1,21 @@
 import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
-import { SHOP_ROUTE } from '../utils/consts'
+import { observer } from 'mobx-react-lite'
+
+import { userStore } from '../store/UserStore'
 
 import { authRoutes, publicRoutes } from './routes'
 
-export const AppRouter = () => {
-    const isAuth = true
+export const AppRouter = observer((): JSX.Element => {
     return (
         <Routes>
-            {isAuth && authRoutes.map(({ path, Component }) =>
-                <Route key={path} path={path} element={Component()} />,
+            {userStore.isAuth && authRoutes.map(({ path, Component }) =>
+                <Route key={path} path={path} element={<Component />} />,
             )}
             {publicRoutes.map(({ path, Component }) =>
-                <Route key={path} path={path} element={Component()} />,
+                <Route key={path} path={path} element={<Component />} />,
             )}
-            <Navigate to={SHOP_ROUTE} />
         </Routes>
     )
-}
+})
