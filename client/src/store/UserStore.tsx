@@ -26,4 +26,4 @@ class UserStore {
     }
 }
 
-export const User = new UserStore()
+export const userStore = new UserStore()
