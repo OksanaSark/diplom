@@ -1,7 +1,7 @@
 const { Order, OrderInfo } = require('../models/index')
 const ApiError = require('../error/apiError');
 
-class OrderController {
+class BasketController {
     async add(req, res, next) {
         try {
             const { orderId, productId, count } = req.body
@@ -9,9 +9,9 @@ class OrderController {
                 next(ApiError.badRequest(('Неверные параметры')))
             }
 
-            await OrderInfo.create({ orderId, productId, count })
+            const addedProduct = await OrderInfo.create({ orderId, productId, count })
 
-            return res.json({message : 'Товар добавлен'})
+            return res.json(addedProduct)
         } catch (e) {
             next(ApiError.badRequest((e.message)))
         }
@@ -24,9 +24,9 @@ class OrderController {
                 next(ApiError.badRequest(('Неверные параметры')))
             }
 
-            await OrderInfo.destroy({ where: { productId, orderId } })
+            const deletedProduct = await OrderInfo.destroy({ where: { productId, orderId } })
 
-            return res.json({message: 'Товар удален'})
+            return res.json(deletedProduct)
         } catch (e) {
             next(ApiError.badRequest((e.message)))
         }
@@ -50,4 +50,4 @@ class OrderController {
     }
 }
 
-module.exports = new OrderController()
+module.exports = new BasketController()

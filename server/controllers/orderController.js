@@ -6,20 +6,20 @@ class OrderController {
     async create(req, res, next) {
         try {
             const { orderId, userId } = req.body
-            await Order.update(
+            const updatedOrder = await Order.update(
                 { status: true },
                 { where: { id: orderId } }
             )
 
             await Order.create({ userId })
 
-            return res.json('Заказ оформлен')
+            return res.json(updatedOrder)
         } catch (e) {
             next(ApiError.badRequest((e.message)))
         }
     }
 
-    async get(req, res, next) {
+    async getAll(req, res, next) {
         try {
             const { userId } = req.body
 

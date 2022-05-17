@@ -6,12 +6,14 @@ const categoryRouter = require('./categoryRouter')
 const ratingRouter = require('./ratingRouter')
 const orderRouter = require('./orderRouter')
 const basketRouter = require('./basketRouter')
+const authMiddleware = require('../middleware/authMiddleware')
+
 
 router.use('/user', userRouter)
 router.use('/category', categoryRouter)
 router.use('/product', productRouter)
-router.use('/rating', ratingRouter)
-router.use('/order', orderRouter)
-router.use('/basket', basketRouter)
+router.use('/rating', authMiddleware, ratingRouter)
+router.use('/order', authMiddleware, orderRouter)
+router.use('/basket', authMiddleware, basketRouter)
 
 module.exports = router

@@ -1,10 +1,9 @@
 const Router = require('express')
 const router = new Router()
 const basketController = require('../controllers/basketController')
-const authMiddleware = require('../middleware/authMiddleware')
 
-router.get('/', authMiddleware, basketController.get)
-router.post('/', authMiddleware, basketController.add)
-router.delete('/', authMiddleware, basketController.delete)
+router.get('/', basketController.get)
+router.post('/', basketController.add)
+router.delete('/', basketController.delete)
 
 module.exports = router
