@@ -50,12 +50,24 @@ class ProductController {
         }
     }
 
+    async delete(req, res, next) {
+        try {
+            const { id } = req.params
+
+            const deletedProduct = await Product.destroy({ where: { id }})
+
+            return res.json(deletedProduct)
+        } catch (e) {
+            next(ApiError.badRequest((e.message)))
+        }
+    }
+
     async getAll(req, res, next) {
         try {
             const { categoryId, limit = 10 , page = 1 } = req.body
             const offset = page * limit - limit
 
-            const query = categoryId ? {where: {categoryId}, limit, offset } : { limit, offset };
+            const query = categoryId ? { where: {categoryId}, limit, offset } : { limit, offset };
 
             const products = await Product.findAndCountAll(query)
 

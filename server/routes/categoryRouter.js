@@ -4,7 +4,8 @@ const categoryController = require('../controllers/categoryController')
 const authMiddleware = require('../middleware/authMiddleware')
 const roleMiddleware = require('../middleware/roleMiddleware')
 
-router.post('/', authMiddleware, roleMiddleware('ADMIN'), categoryController.create)
 router.get('/', categoryController.getAll)
+router.post('/', authMiddleware, roleMiddleware('ADMIN'), categoryController.create)
+router.delete('/:id', authMiddleware, roleMiddleware('ADMIN'), categoryController.delete)
 
 module.exports = router

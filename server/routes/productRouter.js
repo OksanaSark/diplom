@@ -10,8 +10,9 @@ const upload = multer({storage: multer.diskStorage({
         filename: function (req, file, callback) {callback(null, file.originalname)}})
 }).single('img');
 
-router.post('/', authMiddleware, roleMiddleware('ADMIN'), upload, productController.create)
 router.get('/', productController.getAll)
 router.get('/:id', productController.getOne)
+router.post('/', authMiddleware, roleMiddleware('ADMIN'), upload, productController.create)
+router.delete('/:id', authMiddleware, roleMiddleware('ADMIN'), productController.delete)
 
 module.exports = router
