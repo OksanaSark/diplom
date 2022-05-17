@@ -48,6 +48,21 @@ class BasketController {
             next(ApiError.badRequest((e.message)))
         }
     }
+
+    async updateCounter(req, res, next) {
+        try {
+            const { orderId, productId, count } = req.body
+
+            const updatedProduct = await OrderInfo.update(
+                { count },
+                { where: { orderId, productId } }
+            )
+
+            return res.json(updatedProduct)
+        } catch (e) {
+            next(ApiError.badRequest((e.message)))
+        }
+    }
 }
 
 module.exports = new BasketController()
