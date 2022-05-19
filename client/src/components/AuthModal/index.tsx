@@ -13,20 +13,21 @@ interface AuthModalProps {
 }
 
 enum AuthStep {
-    Login = 'Login',
-    Registration = 'Registration'
+    LOGIN = 'Login',
+    REGISTRATION = 'Registration'
 }
 
 export const AuthModal = (props: AuthModalProps) => {
-    const [authStep, setAuthStep] = useState<string>(AuthStep.Login)
+    const [authStep, setAuthStep] = useState<AuthStep>(AuthStep.LOGIN)
+    const isLogin = authStep === 'Login'
 
     const closeModal = (): void => {
-        setAuthStep(AuthStep.Login)
+        setAuthStep(AuthStep.LOGIN)
         props.setIsAuthModalOpen(false)
     }
 
     const onRegistration = (): void => {
-        setAuthStep(AuthStep.Registration)
+        setAuthStep(AuthStep.REGISTRATION)
     }
 
     return (
@@ -38,8 +39,8 @@ export const AuthModal = (props: AuthModalProps) => {
             <AuthModalComponent>
                 <Logo />
                 <p className={'title'}>Добро пожаловать</p>
-                <AuthForm authStep={authStep} />
-                {authStep === 'Login'
+                <AuthForm isLogin={isLogin} />
+                {isLogin
                     && <div className={'registration'} onClick={onRegistration}>
                         <p className={'registrationText'}>Зарегистрироваться</p>
                         <img src={Icons.ArrowRight} className={'arrowIcon'}/>

@@ -11,7 +11,7 @@ interface FormValues {
 }
 
 interface AuthFormProps {
-    authStep: string
+    isLogin: boolean
 }
 
 export const AuthForm = (props: AuthFormProps) => {
@@ -72,8 +72,8 @@ export const AuthForm = (props: AuthFormProps) => {
                         component="p"
                     />
                     <AuthButton
-                        text={props.authStep === 'Login' ? 'Войти' : 'Зарегистрироваться'}
-                        className={props.authStep === 'Login' ? 'loginBtn' : 'registrationBtn'}
+                        text={props.isLogin ? 'Войти' : 'Зарегистрироваться'}
+                        className={props.isLogin ? 'loginBtn' : 'registrationBtn'}
                         disabled={formik.isSubmitting}
                     />
                 </Form>
