@@ -15,7 +15,7 @@ OrderInfo.belongsTo(Order)
 Product.hasMany(OrderInfo)
 OrderInfo.belongsTo(Product)
 
-Product.hasMany(Rating, {as: 'rateInfo'})
+Product.hasMany(Rating, { as: 'rateInfo' })
 Rating.belongsTo(Product)
 
 Product.hasMany(ProductInfo, { as: 'info' })

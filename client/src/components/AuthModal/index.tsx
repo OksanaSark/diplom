@@ -38,12 +38,12 @@ export const AuthModal = (props: AuthModalProps) => {
         >
             <AuthModalComponent>
                 <Logo />
-                <p className={'title'}>Добро пожаловать</p>
+                <p className='title'>Добро пожаловать</p>
                 <AuthForm isLogin={isLogin} />
                 {isLogin
-                    && <div className={'registration'} onClick={onRegistration}>
-                        <p className={'registrationText'}>Зарегистрироваться</p>
-                        <img src={Icons.ArrowRight} className={'arrowIcon'}/>
+                    && <div className='registration' onClick={onRegistration}>
+                        <p className='registrationText'>Зарегистрироваться</p>
+                        <img src={Icons.ArrowRight} className='arrowIcon' />
                     </div>
                 }
             </AuthModalComponent>

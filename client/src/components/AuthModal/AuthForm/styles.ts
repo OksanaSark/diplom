@@ -11,7 +11,7 @@ const AuthFormComponent = styled.div`
     border-bottom: 2px solid ${Colors.darkGray};
     outline: none;
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
     padding: 5px;
   };
   .fieldMargin {
@@ -20,6 +20,7 @@ const AuthFormComponent = styled.div`
   .errorMessage {
     color: red;
     padding-left: 5px;
+    font-size: 12px;
   };
 `
 

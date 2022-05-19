@@ -5,11 +5,14 @@ import { Colors } from '../../styles/colors'
 export const customModalStyle = {
     content: {
         width: '440px',
-        height: '580px',
-        top: '50%',
+        height: 'fit-content',
+        minHeight: '490px',
+        top: '45%',
         left: '50%',
+        bottom: 0,
         transform: 'translate(-50%, -50%)',
         borderRadius: '25px',
+        padding: 0,
     },
 }
 
@@ -17,17 +20,17 @@ const AuthModalComponent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 40px 0 40px;
+  padding: 30px 40px;
   .title {
     font-weight: bold;
-    font-size: 26px;
+    font-size: 24px;
     color: ${Colors.black};
-    margin-bottom: 65px;
+    margin-bottom: 55px;
     @media (max-width: 1024px) {
-      font-size: 24px;
+      font-size: 22px;
     }
     @media (max-width: 768px) {
-      font-size: 22px;
+      font-size: 20px;
     }
   };
   .registration {

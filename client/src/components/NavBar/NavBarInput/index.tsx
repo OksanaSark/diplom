@@ -20,19 +20,19 @@ export const NavBarInput = () => {
     return (
         <NavBarInputComponent>
             <FormikProvider value={formik}>
-                <Form className="searchContainer">
+                <Form className='searchContainer'>
                     <Field
-                        name="query"
+                        name='query'
                         value={formik.values.query}
-                        className={'field'}
+                        className='field'
                         maxlength="25"
-                        type="search"
-                        placeholder="Введите категорию/продукт"
+                        type='search'
+                        placeholder='Введите категорию/продукт'
                         onChange={formik.handleChange}
                     />
                     <button
-                        type="submit"
-                        className={'searchIcon'}
+                        type='submit'
+                        className='searchIcon'
                         disabled={!formik.values.query}
                     />
                 </Form>
