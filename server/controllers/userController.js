@@ -89,9 +89,9 @@ class UserController {
                 req.user.id,
                 req.user.email,
                 req.user.role,
-                req.firstName,
-                req.lastName,
-                req.phoneNumber
+                req.user.firstName,
+                req.user.lastName,
+                req.user.phoneNumber
             )
 
             return res.json({ token })
