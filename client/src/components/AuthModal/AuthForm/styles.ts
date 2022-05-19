@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Colors } from '../../styles/colors'
+import { Colors } from '../../../styles/colors'
 
 const AuthFormComponent = styled.div`
     display: flex;

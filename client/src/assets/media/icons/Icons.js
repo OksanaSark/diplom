@@ -1,7 +1,13 @@
+import Basket from './basket.svg'
+import Orders from './orders.svg'
 import ArrowRight from './rightArrow.svg'
+import Search from './search.svg'
+import User from './user.svg'
 
-const Icons = {
+export const Icons = {
     ArrowRight,
+    User,
+    Basket,
+    Search,
+    Orders,
 }
-
-export default Icons

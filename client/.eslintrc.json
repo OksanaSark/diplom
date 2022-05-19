@@ -106,12 +106,9 @@
             "error",
             {
                 "groups": [
-                    // React
+                    // React, Packages
                     [
-                        "^react"
-                    ],
-                    // Packages.
-                    [
+                        "^react",
                         "^@?\\w"
                     ],
                     // Side effect imports.
