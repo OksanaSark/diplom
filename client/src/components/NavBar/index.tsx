@@ -10,10 +10,10 @@ import { NavBarInput } from './NavBarInput'
 import NavBarComponent from './styles'
 
 export const NavBar = () => {
-    const [authModalIsOpen, setAuthModalIsOpen] = React.useState<boolean>(false)
+    const [isAuthModalOpen, setIsAuthModalOpen] = React.useState<boolean>(false)
 
     const onOpenAuthModal = () => {
-        setAuthModalIsOpen(true)
+        setIsAuthModalOpen(true)
     }
 
     return (
@@ -37,7 +37,7 @@ export const NavBar = () => {
                     <p className={'tabTitle'}>Корзина</p>
                 </NavLink>
             </div>
-            <AuthModal authModalIsOpen={authModalIsOpen} setAuthModalIsOpen={setAuthModalIsOpen} />
+            <AuthModal isAuthModalOpen={isAuthModalOpen} setIsAuthModalOpen={setIsAuthModalOpen} />
         </NavBarComponent>
     )
 }

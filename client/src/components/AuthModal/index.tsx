@@ -8,33 +8,38 @@ import { Logo } from './Logo'
 import AuthModalComponent, { customModalStyle } from './styles'
 
 interface AuthModalProps {
-    authModalIsOpen: boolean;
-    setAuthModalIsOpen: (authModalIsOpen: boolean) => void;
+    isAuthModalOpen: boolean;
+    setIsAuthModalOpen: (authModalIsOpen: boolean) => void;
+}
+
+enum AuthStep {
+    Login = 'Login',
+    Registration = 'Registration'
 }
 
 export const AuthModal = (props: AuthModalProps) => {
-    const [isLogin, setIsLogin] = useState<boolean>(true)
+    const [authStep, setAuthStep] = useState<string>(AuthStep.Login)
 
     const closeModal = (): void => {
-        setIsLogin(true)
-        props.setAuthModalIsOpen(false)
+        setAuthStep(AuthStep.Login)
+        props.setIsAuthModalOpen(false)
     }
 
     const onRegistration = (): void => {
-        setIsLogin(false)
+        setAuthStep(AuthStep.Registration)
     }
 
     return (
         <Modal
-            isOpen={props.authModalIsOpen}
+            isOpen={props.isAuthModalOpen}
             style={customModalStyle}
             onRequestClose={closeModal}
         >
             <AuthModalComponent>
                 <Logo />
                 <p className={'title'}>Добро пожаловать</p>
-                <AuthForm isLogin={isLogin} />
-                {isLogin
+                <AuthForm authStep={authStep} />
+                {authStep === 'Login'
                     && <div className={'registration'} onClick={onRegistration}>
                         <p className={'registrationText'}>Зарегистрироваться</p>
                         <img src={Icons.ArrowRight} className={'arrowIcon'}/>

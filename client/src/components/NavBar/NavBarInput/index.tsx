@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Field, Form, FormikProps, FormikProvider, useFormik } from 'formik'
 
 import NavBarInputComponent from './styles'

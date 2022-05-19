@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { ErrorMessage, Field, Form, FormikErrors, FormikProps, FormikProvider, useFormik } from 'formik'
 
 import { AuthButton } from '../AuthButton'
@@ -12,10 +11,12 @@ interface FormValues {
 }
 
 interface AuthFormProps {
-    isLogin: boolean
+    authStep: string
 }
 
 export const AuthForm = (props: AuthFormProps) => {
+    const emailFormat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+
     const formik: FormikProps<FormValues> = useFormik({
         initialValues: {
             email: '',
@@ -23,7 +24,6 @@ export const AuthForm = (props: AuthFormProps) => {
         },
         onSubmit: (values: FormValues, { setSubmitting }): void => {
             setSubmitting(false)
-            console.log('values', values)
         },
         validate: (values: FormValues) => {
             const errors: FormikErrors<FormValues> = {}
@@ -31,7 +31,7 @@ export const AuthForm = (props: AuthFormProps) => {
             if (!values.email) {
                 errors.email = 'Введите email'
             } else if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                !emailFormat.test(values.email)
             ) {
                 errors.email = 'Неверный формат данных'
             }
@@ -72,8 +72,8 @@ export const AuthForm = (props: AuthFormProps) => {
                         component="p"
                     />
                     <AuthButton
-                        text={props.isLogin ? 'Войти' : 'Зарегистрироваться'}
-                        className={props.isLogin ? 'loginBtn' : 'registrationBtn'}
+                        text={props.authStep === 'Login' ? 'Войти' : 'Зарегистрироваться'}
+                        className={props.authStep === 'Login' ? 'loginBtn' : 'registrationBtn'}
                         disabled={formik.isSubmitting}
                     />
                 </Form>
