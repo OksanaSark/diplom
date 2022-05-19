@@ -18,23 +18,23 @@ export const NavBar = () => {
 
     return (
         <NavBarComponent>
-            <NavLink to={Routes.ShopRoute} className={'logoContainer'}>
-                <img src={Images.Logo} className={'logoImg'}/>
-                <p className={'logoTitle'}>ЮГР</p>
+            <NavLink to={Routes.ShopRoute} className='logoContainer'>
+                <img src={Images.Logo} className='logoImg' />
+                <p className='logoTitle'>ЮГР</p>
             </NavLink>
             <NavBarInput />
-            <div className={'tabsContainer'}>
-                <NavLink to={Routes.OrdersRoute} className={'tabContainer'}>
-                    <img className={'ordersIcon'} src={Icons.Orders} />
-                    <p className={'tabTitle'}>Заказы</p>
+            <div className='tabsContainer'>
+                <NavLink to={Routes.OrdersRoute} className='tabContainer'>
+                    <img className='ordersIcon' src={Icons.Orders} />
+                    <p className='tabTitle'>Заказы</p>
                 </NavLink>
-                <div className={'tabContainer'} onClick={onOpenAuthModal}>
-                    <img className={'userIcon'} src={Icons.User} />
-                    <p className={'tabTitle'}>Войти</p>
+                <div className='tabContainer' onClick={onOpenAuthModal}>
+                    <img className='userIcon' src={Icons.User} />
+                    <p className='tabTitle'>Войти</p>
                 </div>
-                <NavLink to={Routes.BasketRoute} className={'tabContainer'}>
-                    <img className={'basketIcon'} src={Icons.Basket} />
-                    <p className={'tabTitle'}>Корзина</p>
+                <NavLink to={Routes.BasketRoute} className='tabContainer'>
+                    <img className='basketIcon' src={Icons.Basket} />
+                    <p className='tabTitle'>Корзина</p>
                 </NavLink>
             </div>
             <AuthModal isAuthModalOpen={isAuthModalOpen} setIsAuthModalOpen={setIsAuthModalOpen} />

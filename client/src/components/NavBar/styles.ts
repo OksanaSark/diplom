@@ -67,7 +67,7 @@ const NavBarComponent = styled.div`
   }
   .basketIcon {
     width: 25px;
-    height: 25px;
+    height: 30px;
   }
 `
 
