@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Images from '../../assets/media/images/Images'
+import { Images } from '../../../assets/media/images/Images'
 
 import LogoComponent from './styles'
 
