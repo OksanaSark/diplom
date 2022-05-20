@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-
 import { Icons } from '../../../assets/media/icons/Icons'
+
 import { Colors } from '../../../styles/colors'
+import styled from 'styled-components'
 
 const NavBarInputComponent = styled.div`
   border: 2px solid ${Colors.lighterGray};

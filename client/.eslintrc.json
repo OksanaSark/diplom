@@ -111,37 +111,26 @@
                         "^react",
                         "^@?\\w"
                     ],
-                    // Side effect imports.
+                    // Api, Hooks, Side effect imports, Folders imports.
+                    // Relative imports, put parent imports last, Components
                     [
-                        "^\\u0000"
-                    ],
-                    // Api
-                    [
-                        "^(?!@).*api.*$"
-                    ],
-                    // Components
-                    [
-                        "^\\.(?!@).*components.*$"
-                    ],
-                    // Hooks
-                    [
-                        "^(?!@).*hooks.*$"
-                    ],
-                    // Relative imports, put parent imports last
-                    [
+                        "^\\.(?!@).*components.*$",
+                        "^(?!@).*api.*$",
+                        "^(?!@).*hooks.*$",
+                        "^\\u0000",
+                        ".*partials.*",
+                        "^\\.(?!/?$)",
+                        "^\\./?$",
                         "^\\./(?=.*/)(?!/?$)",
                         "^\\.\\.(?!/?$)",
                         "^\\.\\./?$"
                     ],
-                    // Folders imports.
-                    [
-                        ".*partials.*",
-                        "^\\.(?!/?$)",
-                        "^\\./?$"
-                    ],
                     // Style imports including styles of other packages
                     [
-                        ".*css$"
+                        ".*css$",
+                        ".css",
+                        ".styles",
+                        "styled-components"
                     ]
                 ]
             }

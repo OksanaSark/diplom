@@ -1,12 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import { NavBarInput } from './NavBarInput'
 import { Icons } from '../../assets/media/icons/Icons'
 import { Images } from '../../assets/media/images/Images'
 import { Routes } from '../../routes'
 import { AuthModal } from '../AuthModal'
 
-import { NavBarInput } from './NavBarInput'
 import NavBarComponent from './styles'
 
 export const NavBar = () => {

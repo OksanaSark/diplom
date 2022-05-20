@@ -1,10 +1,9 @@
-import styled from 'styled-components'
+import { AuthButtonProps } from './index'
 
 import { Colors } from '../../../styles/colors'
+import styled from 'styled-components'
 
-import { TestProps } from './index'
-
-const AuthButtonComponent = styled.button<TestProps>`
+const AuthButtonComponent = styled.button<AuthButtonProps>`
   width: 100%;
   margin-top: 15px;
   height: 40px;

@@ -1,9 +1,13 @@
+import Group from './group.png'
 import Logo from './logo.png'
 import Pipes from './pipes.jpg'
-import Bg from './truby.png'
+import Stock from './stock.jpeg'
+import Welding from './welding.jpeg'
 
 export const Images = {
-    Bg,
     Logo,
     Pipes,
+    Welding,
+    Stock,
+    Group,
 }
