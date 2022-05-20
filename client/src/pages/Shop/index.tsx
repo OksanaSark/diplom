@@ -11,6 +11,8 @@ import 'swiper/css/pagination'
 import ShopComponent from './styles'
 
 export const Shop = () => {
+    const imageSources: string[] = [Images.Group, Images.Welding, Images.Stock]
+
     return (
         <ShopComponent>
             <div className='descriptionContainer'>
@@ -33,22 +35,18 @@ export const Shop = () => {
                 spaceBetween={20}
                 speed={650}
                 loop={true}
-                className="swiperContainer"
+                className='swiperContainer'
                 pagination={{
                     dynamicBullets: true,
                     clickable: true,
                 }}
                 modules={[Pagination, Navigation]}
             >
-                <SwiperSlide>
-                    <img src={Images.Group} className='img' />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={Images.Welding} className='img'/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={Images.Stock} className='img' />
-                </SwiperSlide>
+                {imageSources.map((src, index) =>
+                    <SwiperSlide key={`${src}${index}`}>
+                        <img src={src} className='img' />
+                    </SwiperSlide>)
+                }
             </Swiper>
         </ShopComponent>
     )
