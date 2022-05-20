@@ -60,6 +60,7 @@ const ShopComponent = styled.div`
   .title {
     font-size: 26px;
     font-weight: bold;
+    margin: 0;
     @media (max-width: 1440px) {
       font-size: 22px;
     }
@@ -84,7 +85,7 @@ const ShopComponent = styled.div`
       font-size: 12px;
     }
   }
-  .img {
+  .slideImg {
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
