@@ -1,6 +1,5 @@
-import styled from 'styled-components'
-
 import { Colors } from '../../styles/colors'
+import styled from 'styled-components'
 
 export const customModalStyle = {
     content: {
@@ -49,7 +48,6 @@ const AuthModalComponent = styled.div`
     margin-left: 15px;
     height: 18px;
   };
-    
 `
 
 export default AuthModalComponent

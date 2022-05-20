@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal'
 
-import { Icons } from '../../assets/media/icons/Icons'
-
 import { AuthForm } from './AuthForm'
 import { Logo } from './Logo'
+import { Icons } from '../../assets/media/icons/Icons'
+
 import AuthModalComponent, { customModalStyle } from './styles'
 
 interface AuthModalProps {

@@ -1,6 +1,5 @@
-import styled from 'styled-components'
-
 import { Colors } from '../../../styles/colors'
+import styled from 'styled-components'
 
 const LogoComponent = styled.div`
     display: flex;

@@ -2,9 +2,8 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
-import { userStore } from '../store/UserStore'
-
 import { authRoutes, publicRoutes } from './index'
+import { userStore } from '../store/UserStore'
 
 export const AppRouter = observer((): JSX.Element => {
     return (
