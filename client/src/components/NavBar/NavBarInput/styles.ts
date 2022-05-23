@@ -18,7 +18,7 @@ const NavBarInputComponent = styled.div`
     width: 50%;
   }
   @media (max-width: 768px) {
-    width: 60%;
+    width: 55%;
   }
   .searchContainer{
     display: flex;

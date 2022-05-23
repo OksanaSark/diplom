@@ -1,5 +1,14 @@
+export enum StatusEnum {
+    error,
+    success,
+    loading
+}
+
 export interface IUser {
     id: number
+    firstName: string
+    lastName: string
+    phoneNumber: string
     email: string
     password: boolean
     role: string

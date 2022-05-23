@@ -25,7 +25,7 @@ export const NavBarInput = () => {
                         name='query'
                         value={formik.values.query}
                         className='field'
-                        maxlength="25"
+                        maxLength="25"
                         type='search'
                         placeholder='Введите категорию/продукт'
                         onChange={formik.handleChange}

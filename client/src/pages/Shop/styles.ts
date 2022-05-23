@@ -16,6 +16,7 @@ const ShopComponent = styled.div`
     padding: 25px 50px;
     height: 600px;
     margin: 0;
+    z-index: 0;
     @media (max-width: 1440px) {
       height: 550px;
     }

@@ -9,9 +9,11 @@ export interface AuthButtonProps {
 }
 
 export const AuthButton = (props: AuthButtonProps) => {
+    const { className, text, disabled } = props
+
     return (
-        <AuthButtonComponent className={props.className} disabled={props.disabled}>
-            {props.text}
+        <AuthButtonComponent className={className} disabled={disabled}>
+            {text}
         </AuthButtonComponent>
     )
 }

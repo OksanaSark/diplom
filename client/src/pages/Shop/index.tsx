@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite'
 import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -11,7 +12,7 @@ import 'swiper/css/scrollbar'
 import 'swiper/css/pagination'
 import ShopComponent from './styles'
 
-export const Shop = () => {
+export const Shop = observer(() => {
     const imageSources: string[] = [Images.Group, Images.Welding, Images.Stock]
 
     return (
@@ -42,6 +43,8 @@ export const Shop = () => {
                     </SwiperSlide>)
                 }
             </Swiper>
+            <div className='categoriesTab'>
+            </div>
         </ShopComponent>
     )
-}
+})

@@ -1,18 +1,12 @@
 import { makeAutoObservable } from 'mobx'
 
-import { ICategory, IProduct } from '../servises/types/types'
+import { IProduct, StatusEnum } from '../servises/types/types'
 
-export class ProductStore {
-    private _categories: ICategory[]
+class ProductStore {
     private _products: IProduct[]
+    private _status: StatusEnum
 
     constructor() {
-        this._categories = [
-            {
-                id: 546,
-                name: 'Copper',
-            },
-        ]
         this._products = [
             {
                 id: 32341,
@@ -35,20 +29,23 @@ export class ProductStore {
                 categoryId: 234,
             },
         ]
+        this._status = StatusEnum.loading
         makeAutoObservable(this)
     }
 
-    get categories() {
-        return this._categories
-    }
     get products() {
         return this._products
     }
-
-    setCategories(categories: ICategory[]) {
-        this._categories = categories
+    get status() {
+        return this._status
     }
+
     setProducts(products: IProduct[]) {
         this._products = products
     }
+    setStatus(status: StatusEnum) {
+        this._status = status
+    }
 }
+
+export const productStore = new ProductStore()
