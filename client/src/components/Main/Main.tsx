@@ -9,7 +9,7 @@ import { MainComponent } from './styles'
 
 export const Main = observer(() => {
     useEffect(() => {
-        userStore.checkToken()
+        userStore.refreshToken()
     }, [])
 
     return (

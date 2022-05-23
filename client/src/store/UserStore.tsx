@@ -44,6 +44,8 @@ class UserStore {
                 this.setStatus(StatusEnum.success)
                 this.setUser(user)
                 this.setIsAuth(true)
+            } else {
+                throw new Error('User was not returned')
             }
         } catch (err) {
             this.setStatus(StatusEnum.error)
@@ -58,20 +60,24 @@ class UserStore {
                 this.setStatus(StatusEnum.success)
                 this.setUser(user)
                 this.setIsAuth(true)
+            } else {
+                throw new Error('User was not returned')
             }
         } catch (err) {
             this.setStatus(StatusEnum.error)
         }
     }
 
-    async checkToken() {
+    async refreshToken() {
         try {
             this.setStatus(StatusEnum.loading)
-            const user = await UserApiClass.checkToken()
+            const user = await UserApiClass.refreshToken()
             if (user) {
                 this.setStatus(StatusEnum.success)
                 this.setUser(user)
                 this.setIsAuth(true)
+            } else {
+                throw new Error('User was not returned')
             }
         } catch (err) {
             this.setStatus(StatusEnum.error)

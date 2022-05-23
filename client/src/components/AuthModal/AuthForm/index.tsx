@@ -26,7 +26,6 @@ interface AuthFormProps {
 
 export const AuthForm = observer((props: AuthFormProps) => {
     const { isLogin, setIsAuthModalOpen } = props
-    const isAuth: boolean = userStore.isAuth
     const isError: boolean = StatusEnum.error === userStore.status
     const navigate = useNavigate()
 
@@ -40,25 +39,34 @@ export const AuthForm = observer((props: AuthFormProps) => {
         },
         onSubmit: (values: FormValues, { setSubmitting }): void => {
             setSubmitting(false)
-            isLogin
-                ? userStore.login(values)
-                : userStore.registration(values)
+            if (isLogin) {
+                userStore.login(values)
+            } else {
+                userStore.registration(values)
+            }
             navigate(Routes.ShopRoute)
         },
         validationSchema: isLogin ? loginValidationSchema : registrationValidationSchema,
     })
 
+    if (isError) {
+        return <p>Что-то пошло не так, повторите позже</p>
+    }
+
     useEffect(() => {
-        isAuth && setIsAuthModalOpen(false)
-    }, [isAuth])
+        if (userStore.isAuth) {
+            setIsAuthModalOpen(false)
+        }
+        setIsAuthModalOpen(false)
+    }, [userStore.isAuth])
 
     return (
         <AuthFormComponent>
-            {isError ? <p>Что-то пошло не так, повторите позже</p>
-                : <FormikProvider value={formik}>
-                    <Form>
-                        {!isLogin
-                            && <>
+            <FormikProvider value={formik}>
+                <Form>
+                    {!isLogin
+                        && (
+                            <>
                                 <Field
                                     className={formik.touched.firstName && formik.errors.firstName ? 'field' : 'field fieldMargin'}
                                     maxLength='20'
@@ -84,31 +92,31 @@ export const AuthForm = observer((props: AuthFormProps) => {
                                 />
                                 <ErrorMessage className='errorMessage' name='phoneNumber' component='p'/>
                             </>
-                        }
-                        <Field
-                            className={formik.touched.email && formik.errors.email ? 'field' : 'field fieldMargin'}
-                            maxLength='25'
-                            type='email'
-                            name='email'
-                            placeholder='test@gmail.com'
-                        />
-                        <ErrorMessage className='errorMessage' name='email' component='p'/>
-                        <Field
-                            className={formik.touched.password && formik.errors.password ? 'field' : 'field fieldMargin'}
-                            maxLength='15'
-                            type='password'
-                            name='password'
-                            placeholder='пароль'
-                        />
-                        <ErrorMessage className='errorMessage' name='password' component='p'/>
-                        <AuthButton
-                            text={isLogin ? 'Войти' : 'Зарегистрироваться'}
-                            className={isLogin ? 'loginBtn' : 'registrationBtn'}
-                            disabled={formik.isSubmitting}
-                        />
-                    </Form>
-                </FormikProvider>
-            }
+                        )
+                    }
+                    <Field
+                        className={formik.touched.email && formik.errors.email ? 'field' : 'field fieldMargin'}
+                        maxLength='25'
+                        type='email'
+                        name='email'
+                        placeholder='test@gmail.com'
+                    />
+                    <ErrorMessage className='errorMessage' name='email' component='p'/>
+                    <Field
+                        className={formik.touched.password && formik.errors.password ? 'field' : 'field fieldMargin'}
+                        maxLength='15'
+                        type='password'
+                        name='password'
+                        placeholder='пароль'
+                    />
+                    <ErrorMessage className='errorMessage' name='password' component='p'/>
+                    <AuthButton
+                        text={isLogin ? 'Войти' : 'Зарегистрироваться'}
+                        className={isLogin ? 'loginBtn' : 'registrationBtn'}
+                        disabled={formik.isSubmitting}
+                    />
+                </Form>
+            </FormikProvider>
         </AuthFormComponent>
     )
 })

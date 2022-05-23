@@ -12,7 +12,6 @@ import { AuthModal } from '../AuthModal'
 import NavBarComponent from './styles'
 
 export const NavBar = observer(() => {
-    const isAuth = userStore.isAuth
     const [isAuthModalOpen, setIsAuthModalOpen] = React.useState<boolean>(false)
 
     const onOpenAuthModal = () => {
@@ -35,7 +34,7 @@ export const NavBar = observer(() => {
                 </NavLink>
                 <div className='tabContainer' onClick={onOpenAuthModal}>
                     <img className='userIcon' src={Icons.User} />
-                    <p className='tabTitle'>{isAuth ? 'Профиль' : 'Войти'}</p>
+                    <p className='tabTitle'>{userStore.isAuth ? 'Профиль' : 'Войти'}</p>
                 </div>
                 <NavLink to={Routes.BasketRoute} className='tabContainer'>
                     <img className='basketIcon' src={Icons.Basket} />

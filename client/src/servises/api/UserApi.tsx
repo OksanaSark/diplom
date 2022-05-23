@@ -20,17 +20,17 @@ export class UserApiClass {
             localStorage.setItem('token', data.token)
             return jwt_decode(data.token)
         } catch (err) {
-            const message = 'registration error'
+            const message = 'login error'
             throw new Error(message)
         }
     }
-    static checkToken = async (): Promise<IUser | void> => {
+    static refreshToken = async (): Promise<IUser | void> => {
         try {
             const { data } = await authAxiosConfig.get('/user/refreshToken')
             localStorage.setItem('token', data.token)
             return jwt_decode(data.token)
         } catch (err) {
-            const message = 'registration error'
+            const message = 'token refresh error'
             throw new Error(message)
         }
     }
