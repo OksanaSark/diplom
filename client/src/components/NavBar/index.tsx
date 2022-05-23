@@ -1,15 +1,17 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 
 import { NavBarInput } from './NavBarInput'
 import { Icons } from '../../assets/media/icons/Icons'
 import { Images } from '../../assets/media/images/Images'
 import { Routes } from '../../routes'
+import { userStore } from '../../store/UserStore'
 import { AuthModal } from '../AuthModal'
 
 import NavBarComponent from './styles'
 
-export const NavBar = () => {
+export const NavBar = observer(() => {
     const [isAuthModalOpen, setIsAuthModalOpen] = React.useState<boolean>(false)
 
     const onOpenAuthModal = () => {
@@ -19,7 +21,9 @@ export const NavBar = () => {
     return (
         <NavBarComponent>
             <NavLink to={Routes.ShopRoute} className='logoContainer'>
-                <img src={Images.Logo} className='logoImg' />
+                <div className='logoImgContainer'>
+                    <img src={Images.Logo} className='logoImg' />
+                </div>
                 <p className='logoTitle'>ЮГР</p>
             </NavLink>
             <NavBarInput />
@@ -30,7 +34,7 @@ export const NavBar = () => {
                 </NavLink>
                 <div className='tabContainer' onClick={onOpenAuthModal}>
                     <img className='userIcon' src={Icons.User} />
-                    <p className='tabTitle'>Войти</p>
+                    <p className='tabTitle'>{userStore.isAuth ? 'Профиль' : 'Войти'}</p>
                 </div>
                 <NavLink to={Routes.BasketRoute} className='tabContainer'>
                     <img className='basketIcon' src={Icons.Basket} />
@@ -40,4 +44,4 @@ export const NavBar = () => {
             <AuthModal isAuthModalOpen={isAuthModalOpen} setIsAuthModalOpen={setIsAuthModalOpen} />
         </NavBarComponent>
     )
-}
+})

@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal'
+import { observer } from 'mobx-react-lite'
 
 import { AuthForm } from './AuthForm'
 import { Logo } from './Logo'
 import { Icons } from '../../assets/media/icons/Icons'
+import { StatusEnum } from '../../servises/types/types'
+import { userStore } from '../../store/UserStore'
 
 import AuthModalComponent, { customModalStyle } from './styles'
 
@@ -17,13 +20,15 @@ enum AuthStep {
     REGISTRATION = 'Registration'
 }
 
-export const AuthModal = (props: AuthModalProps) => {
+export const AuthModal = observer((props: AuthModalProps) => {
+    const { isAuthModalOpen, setIsAuthModalOpen } = props
     const [authStep, setAuthStep] = useState<AuthStep>(AuthStep.LOGIN)
     const isLogin = authStep === 'Login'
 
     const closeModal = (): void => {
         setAuthStep(AuthStep.LOGIN)
-        props.setIsAuthModalOpen(false)
+        setIsAuthModalOpen(false)
+        userStore.setStatus(StatusEnum.success)
     }
 
     const onRegistration = (): void => {
@@ -32,14 +37,15 @@ export const AuthModal = (props: AuthModalProps) => {
 
     return (
         <Modal
-            isOpen={props.isAuthModalOpen}
+            isOpen={isAuthModalOpen}
             style={customModalStyle}
+            ariaHideApp={false}
             onRequestClose={closeModal}
         >
             <AuthModalComponent>
                 <Logo />
                 <p className='title'>Добро пожаловать</p>
-                <AuthForm isLogin={isLogin} />
+                <AuthForm isLogin={isLogin} setIsAuthModalOpen={setIsAuthModalOpen} />
                 {isLogin
                     && <div className='registration' onClick={onRegistration}>
                         <p className='registrationText'>Зарегистрироваться</p>
@@ -49,4 +55,4 @@ export const AuthModal = (props: AuthModalProps) => {
             </AuthModalComponent>
         </Modal>
     )
-}
+})

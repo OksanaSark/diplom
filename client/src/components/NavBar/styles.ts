@@ -1,11 +1,14 @@
+import { Colors } from '../../styles/colors'
 import styled from 'styled-components'
 
 const NavBarComponent = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 30px;
+    padding: 35px 30px;
     height: 60px;
+    border-bottom: 2px solid ${Colors.gray};
+    background-color: ${Colors.black};
   .tabsContainer {
     display: flex;
     justify-content: space-between;
@@ -19,6 +22,11 @@ const NavBarComponent = styled.div`
       width: 25%;
     }
   }
+  .logoImgContainer {
+    background-color: ${Colors.white};
+    padding: 10px;
+    border-radius: 50%;
+  }
   .logoContainer {
     display: flex;
     justify-content: space-between;
@@ -26,7 +34,7 @@ const NavBarComponent = styled.div`
     margin-right: auto;
     width: 5%;
     @media (max-width: 1800px) {
-      width: 8%;
+      width: 10%;
     }
     @media (max-width: 1024px) {
       width: 12%;
@@ -45,16 +53,18 @@ const NavBarComponent = styled.div`
   .logoTitle {
     display: flex;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
+    color: ${Colors.white};
   }
   .logoImg {
-    width: 35px;
-    height: 33px;
+    width: 37px;
+    height: 35px;
   }
   .tabTitle {
     font-size: 14px;
     margin: 0;
     font-weight: bold;
+    color: ${Colors.white};
   }
   .ordersIcon {
     width: 30px;
