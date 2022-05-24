@@ -45,6 +45,7 @@
             "error",
             "never"
         ],
+        "no-non-null-assertion": "off",
         "no-trailing-spaces": [
             "error",
             {

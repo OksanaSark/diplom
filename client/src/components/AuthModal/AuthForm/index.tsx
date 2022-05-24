@@ -57,7 +57,6 @@ export const AuthForm = observer((props: AuthFormProps) => {
         if (userStore.isAuth) {
             setIsAuthModalOpen(false)
         }
-        setIsAuthModalOpen(false)
     }, [userStore.isAuth])
 
     return (

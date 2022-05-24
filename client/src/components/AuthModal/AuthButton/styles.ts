@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const AuthButtonComponent = styled.button<AuthButtonProps>`
   width: 100%;
-  margin-top: 15px;
+  margin-top: 20px;
   height: 40px;
   border: none;
   border-radius: 3px;

@@ -77,7 +77,7 @@ class UserStore {
                 this.setUser(user)
                 this.setIsAuth(true)
             } else {
-                throw new Error('User was not returned')
+                console.log('User was not returned(unauthorized)')
             }
         } catch (err) {
             this.setStatus(StatusEnum.error)
