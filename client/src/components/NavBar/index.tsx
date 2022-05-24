@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
 import { NavBarInput } from './NavBarInput'
@@ -12,10 +12,15 @@ import { AuthModal } from '../AuthModal'
 import NavBarComponent from './styles'
 
 export const NavBar = observer(() => {
+    const navigate = useNavigate()
     const [isAuthModalOpen, setIsAuthModalOpen] = React.useState<boolean>(false)
 
-    const onOpenAuthModal = () => {
-        setIsAuthModalOpen(true)
+    const authHandler = () => {
+        if (userStore.isAuth) {
+            navigate(Routes.ProfileRoute)
+        } else {
+            setIsAuthModalOpen(true)
+        }
     }
 
     return (
@@ -32,7 +37,7 @@ export const NavBar = observer(() => {
                     <img className='ordersIcon' src={Icons.Orders} />
                     <p className='tabTitle'>Заказы</p>
                 </NavLink>
-                <div className='tabContainer' onClick={onOpenAuthModal}>
+                <div className='tabContainer' onClick={authHandler}>
                     <img className='userIcon' src={Icons.User} />
                     <p className='tabTitle'>{userStore.isAuth ? 'Профиль' : 'Войти'}</p>
                 </div>

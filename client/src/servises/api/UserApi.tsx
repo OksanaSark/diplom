@@ -30,8 +30,7 @@ export class UserApiClass {
             localStorage.setItem('token', data.token)
             return jwt_decode(data.token)
         } catch (err) {
-            const message = 'token refresh error'
-            throw new Error(message)
+            console.log('token refresh error')
         }
     }
 }

@@ -2,6 +2,7 @@ import { Admin } from '../pages/Admin'
 import { Orders } from '../pages/Orders'
 import { ProductDetails } from '../pages/ProductDetails'
 import { ProductsList } from '../pages/ProductsList'
+import { Profile } from '../pages/Profile'
 import { Shop } from '../pages/Shop'
 
 export enum Routes {
@@ -10,7 +11,8 @@ export enum Routes {
     OrdersRoute = '/orders',
     BasketRoute = '/basket',
     ProductListRoute = '/products',
-    ProductRoute = '/product'
+    ProductRoute = '/product',
+    ProfileRoute = '/profile'
 }
 
 export const authRoutes = [
@@ -25,6 +27,10 @@ export const authRoutes = [
     {
         path: Routes.BasketRoute,
         Component: Orders,
+    },
+    {
+        path: Routes.ProfileRoute,
+        Component: Profile,
     },
 ]
 
