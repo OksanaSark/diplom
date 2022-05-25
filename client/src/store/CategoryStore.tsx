@@ -1,15 +1,15 @@
 import { makeAutoObservable } from 'mobx'
 
 import { CategoryFormValues } from '../components/Profile/ProfileInfo/CategoryForm'
-import { CategoryApiClass } from '../servises/api/CategoryApi'
-import { ICategory, StatusEnum } from '../servises/types/types'
+import { CategoryApiClass } from '../services/api/CategoryApi'
+import { ICategory, StatusEnum } from '../services/types/types'
 
 class CategoryStore {
     private _categories: ICategory[] = []
     private _status: StatusEnum
 
     constructor() {
-        this._status = StatusEnum.loading
+        this._status = StatusEnum.initial
         makeAutoObservable(this)
     }
 

@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, FormikProps, FormikProvider, useFormik } fro
 import { observer } from 'mobx-react-lite'
 
 import { categoryValidationSchema } from '../../../../helpers/formValidation'
-import { StatusEnum } from '../../../../servises/types/types'
+import { StatusEnum } from '../../../../services/types/types'
 import { categoryStore } from '../../../../store/CategoryStore'
 import { AuthButton } from '../../../AuthModal/AuthButton'
 

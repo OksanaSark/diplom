@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import CategoryForm from './CategoryForm'
 import ProductForm from './ProductForm'
 import { Images } from '../../../assets/media/images/Images'
-import { StatusEnum } from '../../../servises/types/types'
+import { StatusEnum } from '../../../services/types/types'
 import { categoryStore } from '../../../store/CategoryStore'
 import { userStore } from '../../../store/UserStore'
 import { AuthButton } from '../../AuthModal/AuthButton'
@@ -46,7 +46,7 @@ const ProfileInfo = observer(() => {
 
     const closeAdminModal = () => {
         setIsAdminModalOpen(false)
-        categoryStore.setStatus(StatusEnum.loading)
+        categoryStore.setStatus(StatusEnum.initial)
     }
 
     const actions: IActions = {

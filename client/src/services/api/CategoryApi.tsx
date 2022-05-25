@@ -15,7 +15,6 @@ export class CategoryApiClass {
     static async createCategory(values: CategoryFormValues): Promise<ICategory | void> {
         try {
             const response = await authAxiosConfig.post<ICategory>('/category', { name: values.categoryName })
-            console.log('I AM HERE', response.data)
             return response.data
         } catch (err) {
             const message = 'category creation error'

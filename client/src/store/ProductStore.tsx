@@ -1,8 +1,8 @@
 import { makeAutoObservable } from 'mobx'
 
 import { ProductFormValues } from '../components/Profile/ProfileInfo/ProductForm'
-import { ProductApiClass } from '../servises/api/ProductApi'
-import { IProduct, StatusEnum } from '../servises/types/types'
+import { ProductApiClass } from '../services/api/ProductApi'
+import { IProduct, StatusEnum } from '../services/types/types'
 
 class ProductStore {
     private _products: IProduct[]
@@ -10,7 +10,7 @@ class ProductStore {
 
     constructor() {
         this._products = []
-        this._status = StatusEnum.success
+        this._status = StatusEnum.initial
         makeAutoObservable(this)
     }
 
