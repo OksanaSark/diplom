@@ -22,6 +22,7 @@ const CategoryFormComponent = styled.div`
     font-size: 12px;
   };
   .title {
+    font-weight: bold;
     font-size: 20px;
     text-align: center;
   }

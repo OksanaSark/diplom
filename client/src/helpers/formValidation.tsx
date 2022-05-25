@@ -25,12 +25,11 @@ export const categoryValidation = {
 }
 
 export const productValidation = {
-    price: Yup.number()
+    productName: Yup.string()
         .required('Введите наименование продукта')
         .min(2, 'Наименование продукта слишком короткое'),
-    productName: Yup.string()
-        .required('Введите наименование категории')
-        .min(3, 'Наименование категории слишком короткое'),
+    productPrice: Yup.string()
+        .required('Введите стоимость продукта'),
 }
 
 export const loginValidationSchema = Yup.object().shape(loginValidation)
