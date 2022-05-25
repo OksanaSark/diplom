@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 
 import { loginValidationSchema, registrationValidationSchema } from '../../../helpers/formValidation'
 import { Routes } from '../../../routes'
-import { StatusEnum } from '../../../servises/types/types'
+import { StatusEnum } from '../../../services/types/types'
 import { userStore } from '../../../store/UserStore'
 import { AuthButton } from '../AuthButton'
 
@@ -21,7 +21,7 @@ export interface FormValues {
 
 interface AuthFormProps {
     isLogin: boolean,
-    setIsAuthModalOpen: (authModalIsOpen: boolean) => void,
+    setIsAuthModalOpen: (isAuthModalOpen: boolean) => void,
 }
 
 export const AuthForm = observer((props: AuthFormProps) => {

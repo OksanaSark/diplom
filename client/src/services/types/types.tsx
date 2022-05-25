@@ -1,7 +1,8 @@
 export enum StatusEnum {
     error,
     success,
-    loading
+    loading,
+    initial
 }
 
 export interface IUser {

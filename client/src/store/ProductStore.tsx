@@ -1,35 +1,16 @@
 import { makeAutoObservable } from 'mobx'
 
-import { IProduct, StatusEnum } from '../servises/types/types'
+import { ProductFormValues } from '../components/Profile/ProfileInfo/ProductForm'
+import { ProductApiClass } from '../services/api/ProductApi'
+import { IProduct, StatusEnum } from '../services/types/types'
 
 class ProductStore {
     private _products: IProduct[]
     private _status: StatusEnum
 
     constructor() {
-        this._products = [
-            {
-                id: 32341,
-                name: 'Pipe',
-                price: 32000,
-                rating: { isRated: true, rate: 5 },
-                info: { productId: 35, title: 'Полимерная труба для водоснабжения',
-                    description: 'Вязкий и упругий материал выдерживает расширение из-за замерзания воды без потери свойств, не лопается при температуре до -400, чем удобен для монтажа зимой, переносит неаккуратное обращение...' },
-                img: 'url....',
-                categoryId: 234,
-            },
-            {
-                id: 645,
-                name: 'Pipe',
-                price: 32000,
-                rating: { isRated: true, rate: 5 },
-                info: { productId: 35, title: 'Медная труба для водоснабжения',
-                    description: 'Вязкий и упругий материал выдерживает расширение из-за замерзания воды без потери свойств, не лопается при температуре до -400, чем удобен для монтажа зимой, переносит неаккуратное обращение...' },
-                img: 'url....',
-                categoryId: 234,
-            },
-        ]
-        this._status = StatusEnum.loading
+        this._products = []
+        this._status = StatusEnum.initial
         makeAutoObservable(this)
     }
 
@@ -45,6 +26,36 @@ class ProductStore {
     }
     setStatus(status: StatusEnum) {
         this._status = status
+    }
+
+    async fetchProducts() {
+        try {
+            this.setStatus(StatusEnum.loading)
+            const products = await ProductApiClass.getProducts()
+            if (products) {
+                this.setStatus(StatusEnum.success)
+                this.setProducts(products)
+            } else {
+                throw new Error('Products were not returned')
+            }
+        } catch (err) {
+            this.setStatus(StatusEnum.error)
+        }
+    }
+
+    async createProduct(values: ProductFormValues) {
+        try {
+            this.setStatus(StatusEnum.loading)
+            const product = await ProductApiClass.createProduct(values)
+            if (product) {
+                this.setStatus(StatusEnum.success)
+                this.setProducts([...this.products, product])
+            } else {
+                throw new Error('Product was not returned')
+            }
+        } catch (err) {
+            this.setStatus(StatusEnum.error)
+        }
     }
 }
 

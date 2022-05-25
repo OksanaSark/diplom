@@ -18,5 +18,23 @@ export const registrationValidation = {
         .required('Введите номер телефона'),
 }
 
+export const categoryValidation = {
+    categoryName: Yup.string()
+        .required('Введите наименование категории')
+        .min(3, 'Наименование категории слишиком короткое'),
+}
+
+export const productValidation = {
+    price: Yup.number()
+        .required('Введите наименование продукта')
+        .min(2, 'Наименование продукта слишком короткое'),
+    productName: Yup.string()
+        .required('Введите наименование категории')
+        .min(3, 'Наименование категории слишком короткое'),
+}
+
 export const loginValidationSchema = Yup.object().shape(loginValidation)
 export const registrationValidationSchema = Yup.object().shape({ ...loginValidation, ...registrationValidation })
+export const categoryValidationSchema = Yup.object().shape(categoryValidation)
+export const productValidationSchema = Yup.object().shape(productValidation)
+

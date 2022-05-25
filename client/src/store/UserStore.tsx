@@ -1,8 +1,8 @@
 import { makeAutoObservable } from 'mobx'
 
 import { FormValues } from '../components/AuthModal/AuthForm'
-import { UserApiClass } from '../servises/api/UserApi'
-import { IUser, StatusEnum } from '../servises/types/types'
+import { UserApiClass } from '../services/api/UserApi'
+import { IUser, StatusEnum } from '../services/types/types'
 
 class UserStore {
     private _isAuth: boolean
@@ -12,7 +12,7 @@ class UserStore {
     constructor() {
         this._isAuth = false
         this._user = null
-        this._status = StatusEnum.success
+        this._status = StatusEnum.initial
         makeAutoObservable(this)
     }
 

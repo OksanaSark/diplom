@@ -1,14 +1,15 @@
 import { makeAutoObservable } from 'mobx'
 
-import { CategoryApiClass } from '../servises/api/CategoryApi'
-import { ICategory, StatusEnum } from '../servises/types/types'
+import { CategoryFormValues } from '../components/Profile/ProfileInfo/CategoryForm'
+import { CategoryApiClass } from '../services/api/CategoryApi'
+import { ICategory, StatusEnum } from '../services/types/types'
 
 class CategoryStore {
     private _categories: ICategory[] = []
     private _status: StatusEnum
 
     constructor() {
-        this._status = StatusEnum.loading
+        this._status = StatusEnum.initial
         makeAutoObservable(this)
     }
 
@@ -29,11 +30,29 @@ class CategoryStore {
     async fetchCategories() {
         try {
             this.setStatus(StatusEnum.loading)
-            const data: ICategory[] = await CategoryApiClass.getCategories()
-            this.setStatus(StatusEnum.success)
-            this.setCategories(data)
+            const categories = await CategoryApiClass.getCategories()
+            if (categories) {
+                this.setStatus(StatusEnum.success)
+                this.setCategories(categories)
+            } else {
+                throw new Error('Categories were not returned')
+            }
         } catch (err) {
-            console.log('fetchCategories')
+            this.setStatus(StatusEnum.error)
+        }
+    }
+
+    async createCategory(values: CategoryFormValues) {
+        try {
+            this.setStatus(StatusEnum.loading)
+            const category = await CategoryApiClass.createCategory(values)
+            if (category) {
+                this.setStatus(StatusEnum.success)
+                this.setCategories([...this.categories, category])
+            } else {
+                throw new Error('Category was not returned')
+            }
+        } catch (err) {
             this.setStatus(StatusEnum.error)
         }
     }

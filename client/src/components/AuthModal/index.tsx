@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { AuthForm } from './AuthForm'
 import { Logo } from './Logo'
 import { Icons } from '../../assets/media/icons/Icons'
-import { StatusEnum } from '../../servises/types/types'
+import { StatusEnum } from '../../services/types/types'
 import { userStore } from '../../store/UserStore'
 
 import AuthModalComponent, { customModalStyle } from './styles'
@@ -28,7 +28,7 @@ export const AuthModal = observer((props: AuthModalProps) => {
     const closeModal = (): void => {
         setAuthStep(AuthStep.LOGIN)
         setIsAuthModalOpen(false)
-        userStore.setStatus(StatusEnum.success)
+        userStore.setStatus(StatusEnum.initial)
     }
 
     const onRegistration = (): void => {
