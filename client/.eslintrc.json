@@ -46,6 +46,7 @@
             "never"
         ],
         "no-non-null-assertion": "off",
+        "react/no-children-prop": "off",
         "no-trailing-spaces": [
             "error",
             {

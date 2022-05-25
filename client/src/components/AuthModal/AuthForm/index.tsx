@@ -21,7 +21,7 @@ export interface FormValues {
 
 interface AuthFormProps {
     isLogin: boolean,
-    setIsAuthModalOpen: (authModalIsOpen: boolean) => void,
+    setIsAuthModalOpen: (isAuthModalOpen: boolean) => void,
 }
 
 export const AuthForm = observer((props: AuthFormProps) => {
