@@ -6,6 +6,7 @@ import { categoryValidationSchema } from '../../../../helpers/formValidation'
 import { StatusEnum } from '../../../../services/types/types'
 import { categoryStore } from '../../../../store/CategoryStore'
 import { AuthButton } from '../../../AuthModal/AuthButton'
+import { Strings } from '../strings'
 
 import CategoryFormComponent from './styles'
 
@@ -28,16 +29,16 @@ const CategoryForm = observer(() => {
     })
 
     if (isError) {
-        return <p>Что-то пошло не так, повторите позже</p>
+        return <p>{Strings.errorMessage}</p>
     }
 
     if (isSuccess) {
-        return <p>Категория создана!</p>
+        return <p>{Strings.CategoryForm.successfulCreation}</p>
     }
 
     return (
         <CategoryFormComponent>
-            <p className='title'>Создание категории</p>
+            <p className='title'>{Strings.CategoryForm.creating}</p>
             <FormikProvider value={formik}>
                 <Form>
                     <Field
@@ -45,7 +46,7 @@ const CategoryForm = observer(() => {
                         maxLength='15'
                         type='text'
                         name='categoryName'
-                        placeholder='Введите наименование категории'
+                        placeholder={Strings.CategoryForm.placeholder}
                     />
                     <ErrorMessage className='errorMessage' name='categoryName' component='p'/>
                     <AuthButton

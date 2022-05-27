@@ -7,9 +7,11 @@ import { ICategory, StatusEnum } from '../services/types/types'
 class CategoryStore {
     private _categories: ICategory[] = []
     private _status: StatusEnum
+    private _selectedCategory: ICategory | null
 
     constructor() {
         this._status = StatusEnum.initial
+        this._selectedCategory = null
         makeAutoObservable(this)
     }
 
@@ -19,12 +21,18 @@ class CategoryStore {
     get status() {
         return this._status
     }
+    get selectedCategory() {
+        return this._selectedCategory
+    }
 
     setCategories(categories: ICategory[]) {
         this._categories = categories
     }
     setStatus(status: StatusEnum) {
         this._status = status
+    }
+    setSelectedCategory(category: ICategory | null) {
+        this._selectedCategory = category
     }
 
     async fetchCategories() {

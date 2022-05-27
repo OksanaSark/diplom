@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx'
 
-import { ProductFormValues } from '../components/Profile/ProfileInfo/ProductForm'
 import { ProductApiClass } from '../services/api/ProductApi'
 import { IProduct, StatusEnum } from '../services/types/types'
 
@@ -43,7 +42,7 @@ class ProductStore {
         }
     }
 
-    async createProduct(values: ProductFormValues) {
+    async createProduct(values: FormData) {
         try {
             this.setStatus(StatusEnum.loading)
             const product = await ProductApiClass.createProduct(values)
