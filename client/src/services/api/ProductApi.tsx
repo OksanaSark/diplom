@@ -1,4 +1,3 @@
-import { ProductFormValues } from '../../components/Profile/ProfileInfo/ProductForm'
 import { authAxiosConfig, axiosConfig } from '../axios'
 import { IProduct } from '../types/types'
 
@@ -12,7 +11,7 @@ export class ProductApiClass {
             throw new Error(message)
         }
     }
-    static async createProduct(values: ProductFormValues): Promise<IProduct | void> {
+    static async createProduct(values: FormData): Promise<IProduct | void> {
         try {
             const response = await authAxiosConfig.post<IProduct>('/product', values )
             return response.data

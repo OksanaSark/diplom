@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 
 import CategoryForm from './CategoryForm'
-import ProductForm from './ProductForm'
+import { ProductFormContainer } from './ProductForm/ProductFormContainer'
 import { Images } from '../../../assets/media/images/Images'
 import { StatusEnum } from '../../../services/types/types'
 import { categoryStore } from '../../../store/CategoryStore'
+import { productStore } from '../../../store/ProductStore'
 import { userStore } from '../../../store/UserStore'
 import { AuthButton } from '../../AuthModal/AuthButton'
 import { AdminModal } from '../AdminModal'
@@ -47,11 +48,12 @@ const ProfileInfo = observer(() => {
     const closeAdminModal = () => {
         setIsAdminModalOpen(false)
         categoryStore.setStatus(StatusEnum.initial)
+        productStore.setStatus(StatusEnum.initial)
     }
 
     const actions: IActions = {
         createCategory: <CategoryForm />,
-        createProduct: <ProductForm />,
+        createProduct: <ProductFormContainer />,
         deleteCategory: <p>удалить катерию</p>,
         deleteProduct: <p>удалить продукт</p>,
     }

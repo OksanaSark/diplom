@@ -1,4 +1,6 @@
 import Basket from './basket.svg'
+import DeleteInfo from './deleteInfo.svg'
+import Img from './img.svg'
 import Orders from './orders.svg'
 import ArrowRight from './rightArrow.svg'
 import Search from './search.svg'
@@ -10,4 +12,6 @@ export const Icons = {
     Basket,
     Search,
     Orders,
+    DeleteInfo,
+    Img,
 }
