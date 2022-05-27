@@ -73,7 +73,7 @@ export const ProductFormContainer = observer(() => {
         setFieldValue: (field: string, value: IProductInfo[]) => void,
         values: ProductFormValues,
     ): void => {
-        setProductInfo(productInfo.filter((info) => info.id !== infoId) )
+        setProductInfo(productInfo.filter((info) => info.id !== infoId))
         setFieldValue('productInfo', values.productInfo.filter((info: IProductInfo) => info.id !== infoId) )
     }
 

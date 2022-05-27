@@ -83,7 +83,7 @@ export const ProductFormComponent = observer((props: ProductFormComponentProps) 
                             type='file'
                             name='productImg'
                             accept='image/*'
-                            onChange={(e) => selectImg(e)}
+                            onChange={selectImg}
                         />
                     </Button>
                     {formik.values.productImg && <div className='imgPreview'>
