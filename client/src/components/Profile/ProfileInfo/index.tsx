@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 
-import CategoryForm from './CategoryForm'
-import { ProductFormContainer } from './ProductForm/ProductFormContainer'
+import { CategoryForm } from './CategoryForm'
+import { ProductDeletionForm } from './ProductDeletionForm'
+import { ProductCreatingFormContainer } from './ProductCreatingForm/ProductCreatingFormContainer'
 import { Images } from '../../../assets/media/images/Images'
 import { StatusEnum } from '../../../services/types/types'
 import { categoryStore } from '../../../store/CategoryStore'
@@ -11,7 +12,7 @@ import { userStore } from '../../../store/UserStore'
 import { AuthButton } from '../../AuthModal/AuthButton'
 import { AdminModal } from '../AdminModal'
 
-import ProfileInfoComponent from './styles'
+import { ProfileInfoComponent } from './styles'
 
 interface IAdminOption {
     title: string,
@@ -39,7 +40,7 @@ const adminOptions: IAdminOption[] = [
     },
 ]
 
-const ProfileInfo = observer(() => {
+export const ProfileInfo = observer(() => {
     const user = userStore.user
     const [activeBtnIndex, setActiveBtnIndex] = useState<number>(-1)
     const [isAdminModalOpen, setIsAdminModalOpen] = React.useState<boolean>(false)
@@ -49,13 +50,14 @@ const ProfileInfo = observer(() => {
         setIsAdminModalOpen(false)
         categoryStore.setStatus(StatusEnum.initial)
         productStore.setStatus(StatusEnum.initial)
+        productStore.setProducts([])
     }
 
     const actions: IActions = {
-        createCategory: <CategoryForm />,
-        createProduct: <ProductFormContainer />,
-        deleteCategory: <p>удалить катерию</p>,
-        deleteProduct: <p>удалить продукт</p>,
+        createCategory: <CategoryForm actionType='createCategory' />,
+        createProduct: <ProductCreatingFormContainer />,
+        deleteCategory: <CategoryForm actionType='deleteCategory' />,
+        deleteProduct: <ProductDeletionForm />,
     }
 
     const buttonShowingHandler = (btnIndex: number) => {
@@ -114,5 +116,3 @@ const ProfileInfo = observer(() => {
         </ProfileInfoComponent>
     )
 })
-
-export default ProfileInfo

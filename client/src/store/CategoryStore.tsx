@@ -64,6 +64,21 @@ class CategoryStore {
             this.setStatus(StatusEnum.error)
         }
     }
+
+    async deleteCategory(categoryId: ICategory['id']) {
+        try {
+            this.setStatus(StatusEnum.loading)
+            const deletedCategory = await CategoryApiClass.deleteCategory(categoryId)
+            if (deletedCategory) {
+                this.setStatus(StatusEnum.success)
+                this.setCategories([...this.categories.filter((category) => category.id !== deletedCategory.id)])
+            } else {
+                throw new Error('Category was not returned')
+            }
+        } catch (err) {
+            this.setStatus(StatusEnum.error)
+        }
+    }
 }
 
 export const categoryStore = new CategoryStore()

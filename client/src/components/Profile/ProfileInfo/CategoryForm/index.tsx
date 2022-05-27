@@ -1,22 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ErrorMessage, Field, Form, FormikProps, FormikProvider, useFormik } from 'formik'
 import { observer } from 'mobx-react-lite'
 
+import { Icons } from '../../../../assets/media/icons/Icons'
 import { categoryValidationSchema } from '../../../../helpers/formValidation'
-import { StatusEnum } from '../../../../services/types/types'
+import { ICategory, StatusEnum } from '../../../../services/types/types'
 import { categoryStore } from '../../../../store/CategoryStore'
 import { AuthButton } from '../../../AuthModal/AuthButton'
 import { Strings } from '../strings'
 
-import CategoryFormComponent from './styles'
+import { CategoryFormComponent } from './styles'
+
+interface CategoryFormProps {
+    actionType: string,
+}
 
 export interface CategoryFormValues {
     categoryName: string,
 }
 
-const CategoryForm = observer(() => {
+export const CategoryForm = observer((props: CategoryFormProps) => {
+    const { actionType } = props
+    const isCreating = actionType === 'createCategory'
     const isError: boolean = StatusEnum.error === categoryStore.status
     const isSuccess: boolean = StatusEnum.success === categoryStore.status
+
+    useEffect( () => {
+        categoryStore.fetchCategories().then(() => categoryStore.setStatus(StatusEnum.initial))
+    }, [])
+
+    const deleteCategory = (categoryId: ICategory['id']) => {
+        categoryStore.deleteCategory(categoryId)
+    }
 
     const formik: FormikProps<CategoryFormValues> = useFormik({
         initialValues: {
@@ -33,13 +48,12 @@ const CategoryForm = observer(() => {
     }
 
     if (isSuccess) {
-        return <p>{Strings.CategoryForm.successfulCreation}</p>
+        return <p>{isCreating ? Strings.CategoryForm.successfulCreation : Strings.CategoryForm.successfulDeletion}</p>
     }
 
-    return (
-        <CategoryFormComponent>
-            <p className='title'>{Strings.CategoryForm.creating}</p>
-            <FormikProvider value={formik}>
+    const renderFormContent = () => {
+        if (isCreating) {
+            return (<FormikProvider value={formik}>
                 <Form>
                     <Field
                         className={formik.touched.categoryName && formik.errors.categoryName ? 'field' : 'field fieldMargin'}
@@ -55,9 +69,24 @@ const CategoryForm = observer(() => {
                         disabled={formik.isSubmitting}
                     />
                 </Form>
-            </FormikProvider>
+            </FormikProvider>)
+        }
+
+        return categoryStore.categories.map((category: ICategory) => {
+            return <div key={category.id} className='categoryContainer'>
+                <p className='categoryName'>{category.name}</p>
+                <img
+                    src={Icons.DeleteInfo}
+                    onClick={() => deleteCategory(category.id)}
+                />
+            </div>
+        })
+    }
+
+    return (
+        <CategoryFormComponent>
+            <p className='title'>{isCreating ? Strings.CategoryForm.creating : Strings.CategoryForm.deletion}</p>
+            {renderFormContent()}
         </CategoryFormComponent>
     )
 })
-
-export default CategoryForm

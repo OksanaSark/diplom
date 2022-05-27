@@ -1,7 +1,7 @@
 import { Colors } from '../../../../styles/colors'
 import styled from 'styled-components'
 
-const ProductForm = styled.div`
+export const ProductCreatingForm = styled.div`
   display: flex;
   flex-direction: column;
   width: 95%;
@@ -86,5 +86,3 @@ const ProductForm = styled.div`
     margin: 0 6px;
   }
 `
-
-export default ProductForm
