@@ -14,7 +14,7 @@ export interface ProductFormValues {
     productPrice: string,
     productInfo: IProductInfo[],
     categoryId: string,
-    productImg: File | any,
+    productImg: File | null,
 }
 
 export interface IProductInfo {
@@ -53,10 +53,9 @@ export const ProductFormContainer = observer(() => {
             formData.append('price', values.productPrice)
             formData.append('info', JSON.stringify(values.productInfo))
             formData.append('categoryId', values.categoryId)
-            formData.append('img', values.productImg)
+            formData.append('img', values.productImg as File)
             productStore.createProduct(formData)
         },
-        onReset: () => {},
         validationSchema: productValidationSchema,
     })
 
