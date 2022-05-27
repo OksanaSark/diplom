@@ -1,10 +1,10 @@
 import { authAxiosConfig, axiosConfig } from '../axios'
-import { IProduct } from '../types/types'
+import { IProduct, ProductListType } from '../types/types'
 
 export class ProductApiClass {
-    static async getProducts(): Promise<IProduct[] | void> {
+    static async getProducts(categoryId?: IProduct['categoryId'], nextPage?: number): Promise<ProductListType | void> {
         try {
-            const response = await axiosConfig.get<IProduct[]>('/product')
+            const response = await axiosConfig.get<ProductListType>('/product', { params: { categoryId, nextPage } })
             return response.data
         } catch (err) {
             const message = 'products getting error'
@@ -14,6 +14,15 @@ export class ProductApiClass {
     static async createProduct(values: FormData): Promise<IProduct | void> {
         try {
             const response = await authAxiosConfig.post<IProduct>('/product', values )
+            return response.data
+        } catch (err) {
+            const message = 'product creation error'
+            throw new Error(message)
+        }
+    }
+    static async deleteProduct(productId: IProduct['id']): Promise<IProduct | void> {
+        try {
+            const response = await authAxiosConfig.delete<IProduct>(`/product/${productId}`)
             return response.data
         } catch (err) {
             const message = 'product creation error'

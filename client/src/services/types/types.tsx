@@ -5,6 +5,11 @@ export enum StatusEnum {
     initial
 }
 
+export type ProductListType = {
+    count: number,
+    rows: IProduct[]
+}
+
 export interface IUser {
     id: number
     firstName: string

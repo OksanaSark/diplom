@@ -1,5 +1,6 @@
 const { Category } = require('../models/index')
 const ApiError = require('../error/apiError')
+const { Product } = require('../models')
 
 class CategoryController {
     async create(req, res, next) {
@@ -16,6 +17,7 @@ class CategoryController {
         try {
             const { id } = req.params
 
+            await Product.destroy({ where: { categoryId: id }})
             const deletedCategory = await Category.destroy({ where: { id }})
 
             return res.json(deletedCategory)

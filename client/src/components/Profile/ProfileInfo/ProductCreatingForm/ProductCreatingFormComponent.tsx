@@ -3,14 +3,14 @@ import { Button } from '@mui/material'
 import { ErrorMessage, Field, Form, FormikProps, FormikProvider } from 'formik'
 import { observer } from 'mobx-react-lite'
 
-import { IProductInfo, ProductFormValues } from './ProductFormContainer'
+import { IProductInfo, ProductFormValues } from './ProductCreatingFormContainer'
 import { Icons } from '../../../../assets/media/icons/Icons'
 import { ICategory } from '../../../../services/types/types'
 import { categoryStore } from '../../../../store/CategoryStore'
 import { AuthButton } from '../../../AuthModal/AuthButton'
 import { Strings } from '../strings'
 
-import ProductForm from './styles'
+import { ProductCreatingForm } from './styles'
 
 interface ProductFormComponentProps {
     formik: FormikProps<ProductFormValues>,
@@ -27,7 +27,7 @@ interface ProductFormComponentProps {
     selectImg: (event: ChangeEvent<HTMLInputElement>) => void,
 }
 
-export const ProductFormComponent = observer((props: ProductFormComponentProps) => {
+export const ProductCreatingFormComponent = observer((props: ProductFormComponentProps) => {
     const {
         formik,
         productInfo,
@@ -37,7 +37,7 @@ export const ProductFormComponent = observer((props: ProductFormComponentProps) 
     } = props
 
     return (
-        <ProductForm>
+        <ProductCreatingForm>
             <p className='title'>{Strings.ProductForm.creating}</p>
             <FormikProvider value={formik}>
                 <Form className={formik.touched.categoryId && formik.errors.categoryId ? 'formContainer' : 'formContainer fieldMargin'}>
@@ -126,6 +126,6 @@ export const ProductFormComponent = observer((props: ProductFormComponentProps) 
                     />
                 </Form>
             </FormikProvider>
-        </ProductForm>
+        </ProductCreatingForm>
     )
 })

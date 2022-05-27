@@ -1,11 +1,10 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { FormikProps, useFormik } from 'formik'
 import { observer } from 'mobx-react-lite'
 
-import { ProductFormComponent } from './ProductFormComponent'
+import { ProductCreatingFormComponent } from './ProductCreatingFormComponent'
 import { productValidationSchema } from '../../../../helpers/formValidation'
 import { StatusEnum } from '../../../../services/types/types'
-import { categoryStore } from '../../../../store/CategoryStore'
 import { productStore } from '../../../../store/ProductStore'
 import { Strings } from '../strings'
 
@@ -29,14 +28,10 @@ const initialProductInfo = {
     description: '',
 }
 
-export const ProductFormContainer = observer(() => {
+export const ProductCreatingFormContainer = observer(() => {
     const [productInfo, setProductInfo] = useState<IProductInfo[]>([initialProductInfo])
     const isError: boolean = StatusEnum.error === productStore.status
     const isSuccess: boolean = StatusEnum.success === productStore.status
-
-    useEffect(() => {
-        categoryStore.fetchCategories()
-    }, [])
 
     const formik: FormikProps<ProductFormValues> = useFormik({
         initialValues: {
@@ -94,7 +89,7 @@ export const ProductFormContainer = observer(() => {
     }
 
     return (
-        <ProductFormComponent
+        <ProductCreatingFormComponent
             formik={formik}
             productInfo={productInfo}
             addInfo={addInfo}

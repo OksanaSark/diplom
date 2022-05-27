@@ -1,7 +1,7 @@
 import { Colors } from '../../../styles/colors'
 import styled from 'styled-components'
 
-const ProfileInfoComponent = styled.div`
+export const ProfileInfoComponent = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 50px;
@@ -96,5 +96,3 @@ const ProfileInfoComponent = styled.div`
     width: 70%;
   }
 `
-
-export default ProfileInfoComponent

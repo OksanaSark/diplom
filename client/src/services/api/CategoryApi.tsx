@@ -21,4 +21,13 @@ export class CategoryApiClass {
             throw new Error(message)
         }
     }
+    static async deleteCategory(categoryId: ICategory['id']): Promise<ICategory | void> {
+        try {
+            const response = await authAxiosConfig.delete<ICategory>(`/category/${categoryId}`)
+            return response.data
+        } catch (err) {
+            const message = 'category creation error'
+            throw new Error(message)
+        }
+    }
 }
