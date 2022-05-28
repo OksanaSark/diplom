@@ -33,8 +33,8 @@ const NavBarInputComponent = styled.div`
     background-color: ${Colors.lightGray};
   };
   .field::-webkit-search-cancel-button { display: none; };
-  .field::-webkit-input-placeholder { color: #C4C4C4; };
-  .field::-moz-placeholder { color: #C4C4C4; };
+  .field::-webkit-input-placeholder { color: ${Colors.newGrey} };
+  .field::-moz-placeholder { color: ${Colors.newGrey} };
   .searchIcon {
     border: none;
     outline: none;

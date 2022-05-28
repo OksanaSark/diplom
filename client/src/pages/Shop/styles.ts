@@ -1,16 +1,15 @@
 import styled from 'styled-components'
 
 const ShopComponent = styled.div`
-    display: flex;
-    padding: 20px 150px;
-    align-items: center;
-    justify-content: space-between;
-    @media (max-width: 1440px) {
-      padding: 20px 80px;
-    }
-    @media (max-width: 1024px) {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 150px;
+  @media (max-width: 1440px) {
+    padding: 20px 80px;
+  }
+  @media (max-width: 1024px) {
     padding: 20px 40px;
-    }
+  }
   .swiperContainer {
     width: 60%;
     padding: 25px 50px;
@@ -57,6 +56,11 @@ const ShopComponent = styled.div`
     @media (max-width: 900px) {
       width: 40%;
     }
+  }
+  .swiperMainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   .title {
     font-size: 26px;
