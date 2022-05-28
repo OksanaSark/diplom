@@ -14,7 +14,7 @@ const NavBarComponent = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-left: auto;
-    width: 15%;
+    width: 17%;
     @media (max-width: 1024px) {
       width: 19%;
     }
