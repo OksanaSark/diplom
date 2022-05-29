@@ -80,7 +80,7 @@ class ProductController {
     async getOne(req, res, next) {
         try {
             const { id } = req.params
-            const { userId } = req.body
+            const { userId } = req.query
 
             const product = await Product.findOne(
                 {

@@ -2,7 +2,7 @@ import jwt_decode from 'jwt-decode'
 
 import { FormValues } from '../../components/AuthModal/AuthForm'
 import { authAxiosConfig, axiosConfig } from '../axios'
-import { IUser } from '../types/types'
+import { IUser } from '../types'
 
 export class UserApiClass {
     static registration = async (values: FormValues): Promise<IUser | void> => {

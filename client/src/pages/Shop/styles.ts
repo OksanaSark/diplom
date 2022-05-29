@@ -92,7 +92,6 @@ const ShopComponent = styled.div`
   }
   .slideImg {
     background-size: contain;
-    background-repeat: no-repeat;
     width: 100%;
     height: 95%;
     border-radius: 30px;

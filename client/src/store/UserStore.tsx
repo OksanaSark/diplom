@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 import { FormValues } from '../components/AuthModal/AuthForm'
 import { UserApiClass } from '../services/api/UserApi'
-import { IUser, StatusEnum } from '../services/types/types'
+import { IUser, StatusEnum } from '../services/types'
 
 class UserStore {
     private _isAuth: boolean

@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 
 import { loginValidationSchema, registrationValidationSchema } from '../../../helpers/formValidation'
 import { Routes } from '../../../routes'
-import { StatusEnum } from '../../../services/types/types'
+import { StatusEnum } from '../../../services/types'
 import { userStore } from '../../../store/UserStore'
 import { AuthButton } from '../AuthButton'
 

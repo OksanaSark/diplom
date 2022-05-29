@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 
-import { ICategory, IProduct, StatusEnum } from '../../../../services/types/types'
+import { ICategory, IProduct, StatusEnum } from '../../../../services/types'
 import { categoryStore } from '../../../../store/CategoryStore'
 import { productStore } from '../../../../store/ProductStore'
 import { Strings } from '../strings'

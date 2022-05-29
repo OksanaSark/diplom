@@ -7,13 +7,15 @@ export const ProductCardComponent = styled.div`
   border-radius: 35px;
   margin-bottom: 20px;
   margin-left: 30px;
-  height: 220px;
+  height: 230px;
+  border: 1px solid ${Colors.gray};
   .name {
     font-size: 22px;
     margin: 10px 0;
     font-weight: bold;
   }
   .productImg {
+    object-fit: cover;
     width: 50%;
     border-bottom-left-radius: 35px;
     border-top-left-radius: 35px;
@@ -40,7 +42,7 @@ export const ProductCardComponent = styled.div`
     border-radius: 10px;
     padding: 8px 10px;
     cursor: pointer;
-    width: 100px;
+    width: 110px;
     margin-bottom: 10px;
     background: transparent;
     border: 1px solid ${Colors.black};
@@ -55,7 +57,7 @@ export const ProductCardComponent = styled.div`
     display: flex;
     align-items: center;
     border: none;
-    width: 100px;
+    width: 110px;
     background: ${Colors.black};
     border-radius: 10px;
     padding: 8px 10px;
@@ -71,6 +73,8 @@ export const ProductCardComponent = styled.div`
     height: 45%;
   }
   .btnsContainer {
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 `

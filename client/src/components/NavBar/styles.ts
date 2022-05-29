@@ -11,15 +11,14 @@ const NavBarComponent = styled.div`
     background-color: ${Colors.black};
   .tabsContainer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-left: auto;
-    width: 17%;
+    width: 20%;
     @media (max-width: 1024px) {
-      width: 19%;
+      width: 25%;
     }
     @media (max-width: 768px) {
-      width: 25%;
+      width: 30%;
     }
   }
   .logoImgContainer {
@@ -49,6 +48,7 @@ const NavBarComponent = styled.div`
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    margin-left: 15px;
   }
   .logoTitle {
     display: flex;

@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { AuthForm } from './AuthForm'
 import { Logo } from './Logo'
 import { Icons } from '../../assets/media/icons/Icons'
-import { StatusEnum } from '../../services/types/types'
+import { StatusEnum } from '../../services/types'
 import { userStore } from '../../store/UserStore'
 
 import AuthModalComponent, { customModalStyle } from './styles'

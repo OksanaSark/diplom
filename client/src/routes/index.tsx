@@ -1,4 +1,4 @@
-import { Orders } from '../pages/Orders'
+import { Basket } from '../pages/Basket'
 import { ProductDetails } from '../pages/ProductDetails'
 import { Profile } from '../pages/Profile'
 import { Shop } from '../pages/Shop'
@@ -14,11 +14,11 @@ export enum Routes {
 export const authRoutes = [
     {
         path: Routes.OrdersRoute,
-        Component: Orders,
+        Component: Basket,
     },
     {
         path: Routes.BasketRoute,
-        Component: Orders,
+        Component: Basket,
     },
     {
         path: Routes.ProfileRoute,

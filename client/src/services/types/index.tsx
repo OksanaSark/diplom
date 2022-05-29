@@ -35,8 +35,8 @@ export interface IProduct {
     id: number
     name: string
     price: number
-    rating: IRating
-    info: IProductInfo
+    rateInfo: IRating
+    info: IProductInfo[]
     img: string,
     categoryId: number
 }
@@ -44,4 +44,8 @@ export interface IProduct {
 export interface ICategory {
     id: number
     name: string
+}
+
+export interface IAddedProducts extends IProduct {
+    count: number
 }

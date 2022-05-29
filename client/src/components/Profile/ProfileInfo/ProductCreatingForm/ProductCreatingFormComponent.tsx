@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 
 import { IProductInfo, ProductFormValues } from './ProductCreatingFormContainer'
 import { Icons } from '../../../../assets/media/icons/Icons'
-import { ICategory } from '../../../../services/types/types'
+import { ICategory } from '../../../../services/types'
 import { categoryStore } from '../../../../store/CategoryStore'
 import { AuthButton } from '../../../AuthModal/AuthButton'
 import { Strings } from '../strings'
@@ -56,7 +56,7 @@ export const ProductCreatingFormComponent = observer((props: ProductFormComponen
                     <ErrorMessage className='errorMessage' name='categoryId' component='p' />
                     <Field
                         className={formik.touched.productName && formik.errors.productName ? 'field' : 'field fieldMargin'}
-                        maxLength='15'
+                        maxLength='40'
                         type='text'
                         name='productName'
                         placeholder={Strings.ProductForm.placeholder}
@@ -64,7 +64,7 @@ export const ProductCreatingFormComponent = observer((props: ProductFormComponen
                     <ErrorMessage className='errorMessage' name='productName' component='p'/>
                     <Field
                         className={formik.touched.productPrice && formik.errors.productPrice ? 'field price' : 'field fieldMargin price'}
-                        maxLength='10'
+                        maxLength='20'
                         type='number'
                         name='productPrice'
                         placeholder={Strings.ProductForm.pricePlaceholder}

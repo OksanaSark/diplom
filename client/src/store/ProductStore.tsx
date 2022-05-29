@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx'
 
 import { ProductApiClass } from '../services/api/ProductApi'
-import { IProduct, StatusEnum } from '../services/types/types'
+import { IProduct, StatusEnum } from '../services/types'
 
 class ProductStore {
     private _products: IProduct[]
