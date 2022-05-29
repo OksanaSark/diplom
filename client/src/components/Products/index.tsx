@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 
 import { ProductList } from './ProductList'
-import { ICategory, StatusEnum } from '../../services/types/types'
+import { Icons } from '../../assets/media/icons/Icons'
+import { ICategory, StatusEnum } from '../../services/types'
 import { categoryStore } from '../../store/CategoryStore'
 import { productStore } from '../../store/ProductStore'
 
@@ -54,13 +55,13 @@ export const Products = observer(() => {
                 <div className='filtersContainer'>
                     <p className='filterTitle'>Сортировать по:</p>
                     {filters.map((filter, index) =>
-                        <p
-                            key={index}
-                            className={activeFilterIndex === index ? 'filter activeFilter' : 'filter'}
-                            onClick={() => selectFilter(index)}
-                        >
-                            {filter}
-                        </p>)}
+                        <div key={index} className={activeFilterIndex === index ? 'filter activeFilter' : 'filter'}>
+                            <p className='filterName' onClick={() => selectFilter(index)}>
+                                {filter}
+                            </p>
+                            <img className='downArrow' src={Icons.DownArrow} />
+                        </div>,
+                    )}
                 </div>
                 <ProductList />
             </div>

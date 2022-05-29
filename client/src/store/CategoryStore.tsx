@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 import { CategoryFormValues } from '../components/Profile/ProfileInfo/CategoryForm'
 import { CategoryApiClass } from '../services/api/CategoryApi'
-import { ICategory, StatusEnum } from '../services/types/types'
+import { ICategory, StatusEnum } from '../services/types'
 
 class CategoryStore {
     private _categories: ICategory[] = []

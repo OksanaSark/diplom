@@ -41,10 +41,10 @@ export const NavBar = observer(() => {
                     <img className='userIcon' src={Icons.User} />
                     <p className='tabTitle'>{userStore.isAuth ? 'Профиль' : 'Войти'}</p>
                 </div>
-                <NavLink to={Routes.BasketRoute} className='tabContainer'>
+                {userStore.isAuth && <NavLink to={Routes.BasketRoute} className='tabContainer'>
                     <img className='basketIcon' src={Icons.Basket} />
                     <p className='tabTitle'>Корзина</p>
-                </NavLink>
+                </NavLink>}
             </div>
             <AuthModal isAuthModalOpen={isAuthModalOpen} setIsAuthModalOpen={setIsAuthModalOpen} />
         </NavBarComponent>

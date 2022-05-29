@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 
 import { Icons } from '../../../../assets/media/icons/Icons'
 import { categoryValidationSchema } from '../../../../helpers/formValidation'
-import { ICategory, StatusEnum } from '../../../../services/types/types'
+import { ICategory, StatusEnum } from '../../../../services/types'
 import { categoryStore } from '../../../../store/CategoryStore'
 import { AuthButton } from '../../../AuthModal/AuthButton'
 import { Strings } from '../strings'
@@ -57,7 +57,7 @@ export const CategoryForm = observer((props: CategoryFormProps) => {
                 <Form>
                     <Field
                         className={formik.touched.categoryName && formik.errors.categoryName ? 'field' : 'field fieldMargin'}
-                        maxLength='15'
+                        maxLength='30'
                         type='text'
                         name='categoryName'
                         placeholder={Strings.CategoryForm.placeholder}

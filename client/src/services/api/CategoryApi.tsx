@@ -1,6 +1,6 @@
 import { CategoryFormValues } from '../../components/Profile/ProfileInfo/CategoryForm'
 import { authAxiosConfig, axiosConfig } from '../axios'
-import { ICategory } from '../types/types'
+import { ICategory } from '../types'
 
 export class CategoryApiClass {
     static async getCategories(): Promise<ICategory[] | void> {

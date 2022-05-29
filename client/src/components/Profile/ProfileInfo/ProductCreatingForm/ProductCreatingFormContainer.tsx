@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 
 import { ProductCreatingFormComponent } from './ProductCreatingFormComponent'
 import { productValidationSchema } from '../../../../helpers/formValidation'
-import { StatusEnum } from '../../../../services/types/types'
+import { StatusEnum } from '../../../../services/types'
 import { productStore } from '../../../../store/ProductStore'
 import { Strings } from '../strings'
 
