@@ -34,7 +34,7 @@ export const ProductCardComponent = styled.div`
     padding: 10px;
     border-top-right-radius: 35px;
     border-bottom-right-radius: 35px;
-    background:  linear-gradient(30deg, ${Colors.lightGray}, ${Colors.newGrey});
+    background: linear-gradient(30deg, ${Colors.lightGray}, ${Colors.newGrey});
   }
   .detailsBtn {
     display: flex;
@@ -62,6 +62,9 @@ export const ProductCardComponent = styled.div`
     border-radius: 10px;
     padding: 8px 10px;
     cursor: pointer;
+  }
+  .disabled {
+    opacity: 0.3;
   }
   .basketBtnText {
     font-weight: bold;

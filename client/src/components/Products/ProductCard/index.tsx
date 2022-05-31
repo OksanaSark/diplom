@@ -1,9 +1,11 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 
 import { Routes } from '../../../routes'
 import { IProduct } from '../../../services/types'
 import { basketStore } from '../../../store/BasketStore'
+import { userStore } from '../../../store/UserStore'
 
 import { ProductCardComponent } from './styles'
 
@@ -11,7 +13,7 @@ interface ProductCardProps {
     product: IProduct
 }
 
-export const ProductCard = (props: ProductCardProps) => {
+export const ProductCard = observer((props: ProductCardProps) => {
     const { product } = props
 
     const isInBasket = useMemo(() => (
@@ -34,13 +36,17 @@ export const ProductCard = (props: ProductCardProps) => {
                     <Link className='detailsBtn' to={`${Routes.ProductRoute}/${product.id}`} state={{ productId: product.id }}>
                         <p className='detailsBtnText'>Подробнее</p>
                     </Link>
-                    <button className='basketBtn' disabled={isInBasket} onClick={() => addToBasket(product.id)}>
+                    <button
+                        className={isInBasket || !userStore.isAuth ? 'basketBtn disabled' : 'basketBtn'}
+                        disabled={isInBasket}
+                        onClick={() => addToBasket(product.id)}
+                    >
                         <p className='basketBtnText'>В корзину</p>
                     </button>
                 </div>
             </div>
         </ProductCardComponent>
     )
-}
+})
 
 export default ProductCard

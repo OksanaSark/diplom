@@ -6,7 +6,7 @@ const NavBarComponent = styled.div`
     align-items: center;
     justify-content: center;
     padding: 35px 30px;
-    height: 60px;
+    height: 75px;
     border-bottom: 2px solid ${Colors.gray};
     background-color: ${Colors.black};
   .tabsContainer {
@@ -76,7 +76,7 @@ const NavBarComponent = styled.div`
     padding: 5px 0;
   }
   .basketIcon {
-    width: 25px;
+    width: 30px;
     height: 30px;
   }
 `

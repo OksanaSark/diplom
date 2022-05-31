@@ -1,10 +1,14 @@
+import { Routes } from '../../routes'
 import { authAxiosConfig, axiosConfig } from '../axios'
-import { IProduct, ProductListType } from '../types'
+import { IProduct, IProductList } from '../types'
 
 export class ProductApiClass {
-    static async getProducts(categoryId?: IProduct['categoryId'], nextPage?: number): Promise<ProductListType | void> {
+    static async getProducts(categoryId?: IProduct['categoryId'], nextPage?: number): Promise<IProductList | void> {
         try {
-            const response = await axiosConfig.get<ProductListType>('/product', { params: { categoryId, nextPage } })
+            const response = await axiosConfig.get<IProductList>(
+                `${Routes.ProductRoute}`,
+                { params: { categoryId, nextPage },
+                })
             return response.data
         } catch (err) {
             const message = 'products getting error'
@@ -13,7 +17,7 @@ export class ProductApiClass {
     }
     static async createProduct(values: FormData): Promise<IProduct | void> {
         try {
-            const response = await authAxiosConfig.post<IProduct>('/product', values )
+            const response = await authAxiosConfig.post<IProduct>(`${Routes.ProductRoute}`, values )
             return response.data
         } catch (err) {
             const message = 'product creation error'
@@ -22,20 +26,17 @@ export class ProductApiClass {
     }
     static async deleteProduct(productId: IProduct['id']): Promise<IProduct | void> {
         try {
-            const response = await authAxiosConfig.delete<IProduct>(`/product/${productId}`)
+            const response = await authAxiosConfig.delete<IProduct>(`${Routes.ProductRoute}/${productId}`)
             return response.data
         } catch (err) {
             const message = 'product creation error'
             throw new Error(message)
         }
     }
-    // todo check this too
     static async getOneProduct(id: number, userId?: number): Promise<IProduct | undefined> {
         try {
-            if (id) {
-                const { data } = await axiosConfig.get(`/product/${id}`, { params: { userId } })
-                return data
-            }
+            const { data } = await axiosConfig.get(`${Routes.ProductRoute}/${id}`, { params: { userId } })
+            return data
         } catch (e) {
             const message = ' product getting error'
             throw new Error(message)

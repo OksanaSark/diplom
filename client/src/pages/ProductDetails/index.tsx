@@ -66,10 +66,6 @@ export const ProductDetails = () => {
         return 0
     }
 
-    if (product?.info) {
-        console.log()
-    }
-
     return (
         <ProductDetailsComponent>
             <div className='productContainer'>

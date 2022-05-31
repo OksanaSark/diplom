@@ -5,11 +5,6 @@ export enum StatusEnum {
     initial
 }
 
-export type ProductListType = {
-    count: number,
-    rows: IProduct[]
-}
-
 export interface IUser {
     id: number
     firstName: string
@@ -48,4 +43,16 @@ export interface ICategory {
 
 export interface IAddedProducts extends IProduct {
     count: number
+}
+
+export interface IProductList {
+    count: number,
+    rows: IProduct[]
+}
+
+export interface IOrder {
+    id: number,
+    date: string,
+    products: IAddedProducts[],
+    total: number
 }
