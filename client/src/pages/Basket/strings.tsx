@@ -4,5 +4,5 @@ export const Strings = {
     ordering: 'Оформление заказа',
     totalPrice: 'Общая сумма заказа:',
     countOfPositions: 'Количество выбранных позиций:',
-    placeAnOrder: 'Оформить',
+    createOrder: 'Оформить',
 }

@@ -39,7 +39,7 @@ export const Basket = observer(() => {
                         <p className='description'>{Strings.totalPrice} {basketStore.totalPrice} &#8381;</p>
                         <p className='description'>{Strings.countOfPositions} {orders.length}</p>
                     </div>
-                    <button className='orderingBtn'>{Strings.placeAnOrder}</button>
+                    <button className='orderingBtn'>{Strings.createOrder}</button>
                 </div>
             </div>
         </BasketComponent>

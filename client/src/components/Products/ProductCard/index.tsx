@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
+import { Strings } from './strings'
 import { Routes } from '../../../routes'
 import { IProduct } from '../../../services/types'
 import { basketStore } from '../../../store/BasketStore'
@@ -34,14 +35,14 @@ export const ProductCard = observer((props: ProductCardProps) => {
                 </div>
                 <div className='btnsContainer' >
                     <Link className='detailsBtn' to={`${Routes.ProductRoute}/${product.id}`} state={{ productId: product.id }}>
-                        <p className='detailsBtnText'>Подробнее</p>
+                        <p className='detailsBtnText'>{Strings.details}</p>
                     </Link>
                     <button
                         className={isInBasket || !userStore.isAuth ? 'basketBtn disabled' : 'basketBtn'}
                         disabled={isInBasket}
                         onClick={() => addToBasket(product.id)}
                     >
-                        <p className='basketBtnText'>В корзину</p>
+                        <p className='basketBtnText'>{Strings.inBasket}</p>
                     </button>
                 </div>
             </div>
