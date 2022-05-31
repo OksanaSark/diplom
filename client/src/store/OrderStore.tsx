@@ -32,16 +32,18 @@ class OrderStore {
     async createOrder() {
         try {
             this.setStatus(StatusEnum.loading)
-            const userId = userStore.user!.id
-            const basketId = basketStore.id
+            if (userStore.user) {
+                const userId = userStore.user.id
+                const basketId = basketStore.id
 
-            const order = await OrderApiClass.createOrder(basketId, userId)
-            if (order) {
-                await basketStore.fetchBasket(userId)
-                await this.fetchOrders(userId)
-                this.setStatus(StatusEnum.success)
-            } else {
-                throw new Error('Order was not returned')
+                const order = await OrderApiClass.createOrder(basketId, userId)
+                if (order) {
+                    await basketStore.fetchBasket(userId)
+                    await this.fetchOrders(userId)
+                    this.setStatus(StatusEnum.success)
+                } else {
+                    throw new Error('Order was not returned')
+                }
             }
         } catch (e) {
             this.setStatus(StatusEnum.error)

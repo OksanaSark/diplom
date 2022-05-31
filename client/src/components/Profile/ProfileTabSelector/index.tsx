@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
@@ -22,14 +22,20 @@ export const ProfileTabSelector = observer((props: ProfileTabSelectorProps) => {
 
     const tabSwitcher = async (tab: string): Promise<void> => {
         setActiveTab(tab)
-        if (tab === tabs.logOut) {
-            setActiveTab(tabs.logOut)
+    }
+
+    const logOut = async () => {
+        if (activeTab === tabs.logOut) {
             await localStorage.removeItem('token')
             await userStore.setUser(null)
             await userStore.setIsAuth(false)
             navigate('/')
         }
     }
+
+    useEffect(() => {
+        logOut()
+    }, [activeTab])
 
     return (
         <ProfileTabSelectorComponent>

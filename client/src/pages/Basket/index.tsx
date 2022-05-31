@@ -1,20 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react-lite'
 
 import { OrderCard } from '../../components/OrderCard'
+import { useFetchBasket } from '../../hooks/useFetchBasket'
 import { Strings } from './strings'
-import { StatusEnum } from '../../services/types'
 import { basketStore } from '../../store/BasketStore'
-import { userStore } from '../../store/UserStore'
 
 import BasketComponent from './styles'
 
 export const Basket = observer(() => {
-    useEffect(() => {
-        if (userStore.isAuth) {
-            basketStore.fetchBasket(userStore.user!.id).then(() => userStore.setStatus(StatusEnum.initial))
-        }
-    }, [])
+    useFetchBasket()
 
     const orders = basketStore.products
 

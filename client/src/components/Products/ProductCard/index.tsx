@@ -27,7 +27,7 @@ export const ProductCard = observer((props: ProductCardProps) => {
 
     return (
         <ProductCardComponent>
-            <img className='productImg' src={`${process.env.REACT_APP_LOCALHOST_URL}${product!.img}`} />
+            <img className='productImg' src={`${process.env.REACT_APP_BASE_URL}${product!.img}`} />
             <div className='productInfoContainer'>
                 <div className='titlesContainer'>
                     <p className='name'>{product.name}</p>
@@ -39,7 +39,7 @@ export const ProductCard = observer((props: ProductCardProps) => {
                     </Link>
                     <button
                         className={isInBasket || !userStore.isAuth ? 'basketBtn disabled' : 'basketBtn'}
-                        disabled={isInBasket}
+                        disabled={isInBasket || !userStore.isAuth}
                         onClick={() => addToBasket(product.id)}
                     >
                         <p className='basketBtnText'>{Strings.inBasket}</p>

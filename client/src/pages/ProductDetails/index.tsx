@@ -55,7 +55,7 @@ export const ProductDetails = () => {
 
     const getImgUrl = () => {
         if (product) {
-            return `${process.env.REACT_APP_LOCALHOST_URL}${product?.img}`
+            return `${process.env.REACT_APP_BASE_URL}${product?.img}`
         }
     }
 
