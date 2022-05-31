@@ -4,6 +4,7 @@ import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { Products } from '../../components/Products'
+import { useFetchBasket } from '../../hooks/useFetchBasket'
 import { Strings } from './strings'
 import { Images } from '../../assets/media/images/Images'
 
@@ -15,6 +16,8 @@ import ShopComponent from './styles'
 
 export const Shop = observer(() => {
     const imageSources: string[] = [Images.Group, Images.Welding, Images.Stock]
+
+    useFetchBasket()
 
     return (
         <ShopComponent>

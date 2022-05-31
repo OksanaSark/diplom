@@ -8,7 +8,7 @@ const AuthButtonComponent = styled.button<AuthButtonProps>`
   margin-top: 20px;
   height: 40px;
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   font-size: 18px;
   cursor: pointer;
   background-color: ${(props) => props.className === 'loginBtn' ? Colors.black : Colors.gray};

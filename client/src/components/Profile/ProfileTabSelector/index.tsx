@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 
 import { userStore } from '../../../store/UserStore'
 
@@ -14,17 +16,26 @@ interface ProfileTabSelectorProps {
     setActiveTab: (tab: string) => void
 }
 
-export const ProfileTabSelector = (props: ProfileTabSelectorProps) => {
+export const ProfileTabSelector = observer((props: ProfileTabSelectorProps) => {
     const { activeTab, setActiveTab } = props
+    const navigate = useNavigate()
 
-    const tabSwitcher = (tab: string): void => {
+    const tabSwitcher = async (tab: string): Promise<void> => {
         setActiveTab(tab)
-        if (tab === tabs.logOut) {
-            setActiveTab(tabs.logOut)
-            userStore.setUser(null)
-            userStore.setIsAuth(false)
-        }
     }
+
+    const logOut = async () => {
+        await localStorage.removeItem('token')
+        await userStore.setUser(null)
+        await userStore.setIsAuth(false)
+        navigate('/')
+    }
+
+    useEffect(() => {
+        if (activeTab === tabs.logOut) {
+            logOut()
+        }
+    }, [activeTab])
 
     return (
         <ProfileTabSelectorComponent>
@@ -40,4 +51,4 @@ export const ProfileTabSelector = (props: ProfileTabSelectorProps) => {
             })}
         </ProfileTabSelectorComponent>
     )
-}
+})

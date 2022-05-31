@@ -1,6 +1,7 @@
 const { Product, ProductInfo, Rating } = require('../models/index')
 const ApiError = require('../error/apiError')
-const calculateRating = require('../helpers/calculateRating')
+const getRateData = require('../helpers/getRateData')
+
 
 const postProductInfo = async (title, description, productId) => {
     await ProductInfo.create({
@@ -8,20 +9,6 @@ const postProductInfo = async (title, description, productId) => {
         description,
         productId
     })
-}
-
-const getRateData = (ratings, user) => {
-    if (ratings.length) {
-        return {
-            isRated: ratings.some(item => item.user === +user),
-            rate: calculateRating(ratings.map(item=> item.rate))
-        }
-    } else {
-        return {
-            isRated: false,
-            rate: 0
-        }
-    }
 }
 
 class ProductController {
@@ -54,6 +41,7 @@ class ProductController {
         try {
             const { id } = req.params
 
+            await ProductInfo.destroy({ where: { productId: id }})
             const deletedProduct = await Product.destroy({ where: { id }})
 
             return res.json(deletedProduct)

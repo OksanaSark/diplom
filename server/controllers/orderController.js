@@ -23,14 +23,14 @@ class OrderController {
         try {
             const { userId } = req.body
 
-            const basket = await Order.findAll(
+            const orders = await Order.findAll(
                 {
                     where: { userId, status: true },
                     include: [{ model: OrderInfo, as: 'orderInfo' }]
                 }
             )
 
-            return res.json(basket)
+            return res.json(orders)
         } catch (e) {
             next(ApiError.badRequest((e.message)))
         }

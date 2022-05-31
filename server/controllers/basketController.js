@@ -1,10 +1,13 @@
-const { Order, OrderInfo } = require('../models/index')
+const { Order, OrderInfo, Product } = require('../models/index')
 const ApiError = require('../error/apiError');
+const { ProductInfo, Rating } = require('../models')
+const getRateData = require('../helpers/getRateData')
+const getTotalOrderPrice = require('../helpers/getTotalOrderPrice')
 
 class BasketController {
     async add(req, res, next) {
         try {
-            const { orderId, productId, count } = req.body
+            const { orderId, productId, count = 1 } = req.body
             if (!orderId || !productId) {
                 next(ApiError.badRequest(('Неверные параметры')))
             }
@@ -19,7 +22,7 @@ class BasketController {
 
     async delete(req, res, next) {
         try {
-            const { productId, orderId } = req.body
+            const { productId, orderId } = req.query
             if (!orderId || !productId) {
                 next(ApiError.badRequest(('Неверные параметры')))
             }
@@ -32,9 +35,26 @@ class BasketController {
         }
     }
 
+    async updateCounter(req, res, next) {
+        try {
+            const { orderId, productId, count } = req.body
+
+            await OrderInfo.update(
+                { count },
+                { where: { orderId, productId } }
+            )
+
+            const updatedProduct = await OrderInfo.findOne({ where: { orderId, productId } })
+
+            return res.json(updatedProduct)
+        } catch (e) {
+            next(ApiError.badRequest((e.message)))
+        }
+    }
+
     async get(req, res, next) {
         try {
-            const { userId } = req.body
+            const { userId } = req.query
 
             const basket = await Order.findOne(
                 {
@@ -43,22 +63,27 @@ class BasketController {
                 }
             )
 
-            return res.json(basket)
-        } catch (e) {
-            next(ApiError.badRequest((e.message)))
-        }
-    }
+            const orderInfo = basket.dataValues.orderInfo
+            const products = []
 
-    async updateCounter(req, res, next) {
-        try {
-            const { orderId, productId, count } = req.body
+            if (orderInfo.length > 0) {
+                await Promise.all(orderInfo.map(async i => {
+                    try {
+                        const product = await Product.findOne(
+                            {
+                                where: { id: i.productId },
+                                include: [{ model: ProductInfo, as: 'info' }, { model: Rating, as: 'rateInfo' }]
+                            }
+                        )
 
-            const updatedProduct = await OrderInfo.update(
-                { count },
-                { where: { orderId, productId } }
-            )
+                        products.push({ ...product.dataValues, rateInfo: getRateData(product.rateInfo, userId), count: i.count })
+                    } catch (e) {
+                        next(ApiError.badRequest((e.message)))
+                    }
+                }))
+            }
 
-            return res.json(updatedProduct)
+            return res.json({ id: basket.dataValues.id, products, totalPrice: getTotalOrderPrice(products) })
         } catch (e) {
             next(ApiError.badRequest((e.message)))
         }

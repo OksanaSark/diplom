@@ -4,7 +4,8 @@ export const customModalStyle = {
     content: {
         width: '450px',
         height: 'fit-content',
-        top: '45%',
+        maxHeight: '95vh',
+        top: '50%',
         left: '50%',
         bottom: 0,
         transform: 'translate(-50%, -50%)',

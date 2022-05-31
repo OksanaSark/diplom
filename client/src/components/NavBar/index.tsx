@@ -1,11 +1,13 @@
 import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { Badge } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 
 import { NavBarInput } from './NavBarInput'
 import { Icons } from '../../assets/media/icons/Icons'
 import { Images } from '../../assets/media/images/Images'
 import { Routes } from '../../routes'
+import { basketStore } from '../../store/BasketStore'
 import { userStore } from '../../store/UserStore'
 import { AuthModal } from '../AuthModal'
 
@@ -42,7 +44,9 @@ export const NavBar = observer(() => {
                     <p className='tabTitle'>{userStore.isAuth ? 'Профиль' : 'Войти'}</p>
                 </div>
                 {userStore.isAuth && <NavLink to={Routes.BasketRoute} className='tabContainer'>
-                    <img className='basketIcon' src={Icons.Basket} />
+                    <Badge badgeContent={basketStore.products.length} color='info' overlap='circular' showZero={false}>
+                        <img className='basketIcon' src={Icons.Basket} />
+                    </Badge>
                     <p className='tabTitle'>Корзина</p>
                 </NavLink>}
             </div>
