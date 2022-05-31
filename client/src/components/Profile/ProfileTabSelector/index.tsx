@@ -25,16 +25,16 @@ export const ProfileTabSelector = observer((props: ProfileTabSelectorProps) => {
     }
 
     const logOut = async () => {
-        if (activeTab === tabs.logOut) {
-            await localStorage.removeItem('token')
-            await userStore.setUser(null)
-            await userStore.setIsAuth(false)
-            navigate('/')
-        }
+        await localStorage.removeItem('token')
+        await userStore.setUser(null)
+        await userStore.setIsAuth(false)
+        navigate('/')
     }
 
     useEffect(() => {
-        logOut()
+        if (activeTab === tabs.logOut) {
+            logOut()
+        }
     }, [activeTab])
 
     return (
