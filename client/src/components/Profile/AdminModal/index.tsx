@@ -1,23 +1,23 @@
 import React from 'react'
 import Modal from 'react-modal'
 
-import AdminModalComponent, { customModalStyle } from './styles'
+import { AdminModalComponent, customModalStyle } from './styles'
 
 interface AdminModalProps {
-    isAdminModalOpen: boolean,
-    closeAdminModal: () => void,
+    isModalOpen: boolean,
+    closeModal: () => void,
     children: JSX.Element
 }
 
 export const AdminModal = (props: AdminModalProps) => {
-    const { isAdminModalOpen, closeAdminModal, children } = props
+    const { isModalOpen, closeModal, children } = props
 
     return (
         <Modal
-            isOpen={isAdminModalOpen}
+            isOpen={isModalOpen}
             style={customModalStyle}
             ariaHideApp={false}
-            onRequestClose={closeAdminModal}
+            onRequestClose={closeModal}
         >
             <AdminModalComponent>
                 {children}

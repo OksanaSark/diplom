@@ -13,7 +13,11 @@ export const AuthButton = (props: AuthButtonProps) => {
     const { className, text, disabled, onClick } = props
 
     return (
-        <AuthButtonComponent className={className} disabled={disabled} onClick={onClick}>
+        <AuthButtonComponent
+            className={className}
+            disabled={disabled}
+            onClick={onClick}
+        >
             {text}
         </AuthButtonComponent>
     )

@@ -35,8 +35,8 @@ class OrderStore {
             if (userStore.user) {
                 const userId = userStore.user.id
                 const basketId = basketStore.id
-
                 const order = await OrderApiClass.createOrder(basketId, userId)
+
                 if (order) {
                     await basketStore.fetchBasket(userId)
                     await this.fetchOrders(userId)

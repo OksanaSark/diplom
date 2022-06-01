@@ -13,6 +13,7 @@ const AuthButtonComponent = styled.button<AuthButtonProps>`
   cursor: pointer;
   background-color: ${(props) => props.className === 'loginBtn' ? Colors.black : Colors.gray};
   color: ${(props) => props.className === 'loginBtn' ? Colors.white : Colors.black};
+  opacity: ${(props) => props.disabled && 0.3};
 `
 
 export default AuthButtonComponent

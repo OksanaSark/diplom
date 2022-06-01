@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const ShopComponent = styled.div`
+export const ShopComponent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 150px;
@@ -97,5 +97,3 @@ const ShopComponent = styled.div`
     border-radius: 30px;
   }
 `
-
-export default ShopComponent

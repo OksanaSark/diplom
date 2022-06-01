@@ -1,8 +1,10 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
+import { useCheckProductInBasket } from '../../../hooks/useCheckProductInBasket'
 import { Strings } from './strings'
+import { addToBasket } from '../../../helpers/addToBasket'
 import { Routes } from '../../../routes'
 import { IProduct } from '../../../services/types'
 import { basketStore } from '../../../store/BasketStore'
@@ -16,14 +18,7 @@ interface ProductCardProps {
 
 export const ProductCard = observer((props: ProductCardProps) => {
     const { product } = props
-
-    const isInBasket = useMemo(() => (
-        basketStore.products.some((item) => item.id === product.id)
-    ), [basketStore.products])
-
-    const addToBasket = async (productId: IProduct['id']) => {
-        await basketStore.addProductToBasket(productId)
-    }
+    const isInBasket = useCheckProductInBasket(basketStore.products, product.id)
 
     return (
         <ProductCardComponent>

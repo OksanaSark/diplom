@@ -110,8 +110,8 @@ export const ProfileInfo = observer(() => {
             }
             <AdminModal
                 children={actions[activeAction]}
-                isAdminModalOpen={isAdminModalOpen}
-                closeAdminModal={closeAdminModal}
+                isModalOpen={isAdminModalOpen}
+                closeModal={closeAdminModal}
             />
         </ProfileInfoComponent>
     )
