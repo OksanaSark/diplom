@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 
-import { Strings } from './stings'
-import { IOrder } from '../../services/types'
+import { Strings } from './strings'
+import { getDate } from '../../helpers/getDate'
 import { orderStore } from '../../store/OrderStore'
 import { userStore } from '../../store/UserStore'
 
@@ -14,10 +14,6 @@ export const Orders = observer(() => {
             orderStore.fetchOrders(userStore.user.id)
         }
     }, [])
-
-    const getDate = (date: IOrder['date']) => {
-        return new Date(date).toLocaleDateString()
-    }
 
     return (
         <OrdersComponent>

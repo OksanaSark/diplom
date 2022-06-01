@@ -75,10 +75,10 @@ class ProductStore {
         }
     }
 
-    async getOneProduct(productId: IProduct['id']) {
+    async getProductById(productId: IProduct['id']) {
         try {
             this.setStatus(StatusEnum.loading)
-            const product = await ProductApiClass.getOneProduct(productId, userStore.user?.id)
+            const product = await ProductApiClass.getProductById(productId, userStore.user?.id)
 
             if (product) {
                 this.setStatus(StatusEnum.success)

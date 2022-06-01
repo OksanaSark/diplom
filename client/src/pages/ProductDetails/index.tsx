@@ -39,7 +39,7 @@ export const ProductDetails = observer(() => {
 
     const getProduct = () => {
         if (productId) {
-            productStore.getOneProduct(productId).then(() => productStore.setStatus(StatusEnum.initial))
+            productStore.getProductById(productId).then(() => productStore.setStatus(StatusEnum.initial))
         }
     }
 
