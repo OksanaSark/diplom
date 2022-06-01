@@ -17,14 +17,14 @@ import { userStore } from '../../store/UserStore'
 
 import { ProductDetailsComponent } from './styles'
 
-interface IStateType {
+interface IState {
     productId: IProduct['id']
 }
 
 export const ProductDetails = observer(() => {
     const [isRatingModalOpen, setIsRatingModalOpen] = useState<boolean>(false)
     const location = useLocation()
-    const { productId } = location.state as IStateType
+    const { productId } = location.state as IState
     const isInBasket = useCheckProductInBasket(basketStore.products, productId)
     const product = productStore.product
 

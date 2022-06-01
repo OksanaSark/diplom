@@ -16,6 +16,8 @@ interface RatingModalInfoProps {
 
 export const RatingModalInfo = observer((props: RatingModalInfoProps) => {
     const { product } = props
+    const isError = ratingStore.status === StatusEnum.error
+    const isSuccess = ratingStore.status === StatusEnum.success
     const [rating, setRating] = useState<number | null>(0)
 
     const rateProduct = (productId: IProduct['id']) => {
@@ -28,11 +30,11 @@ export const RatingModalInfo = observer((props: RatingModalInfoProps) => {
         }
     }
 
-    if (ratingStore.status === StatusEnum.error) {
+    if (isError) {
         return <p>{Strings.errorMessage}</p>
     }
 
-    if (ratingStore.status === StatusEnum.success) {
+    if (isSuccess) {
         return <p>{Strings.successMessage}</p>
     }
 

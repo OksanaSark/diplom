@@ -13,16 +13,14 @@ export const OrderModalInfo = observer(() => {
     const isSuccess = orderStore.status === StatusEnum.success
     const isError = orderStore.status === StatusEnum.error
 
-    const createOrder = () => {
-        orderStore.createOrder()
-    }
-
     if (isSuccess) {
-        return <SuccessOrderComponent>
-            <p className='successTitle'>{Strings.successOrder}</p>
-            <p className='successText'>{Strings.communicationWithManager}</p>
-            <p className='successText'>{Strings.gratitude}</p>
-        </SuccessOrderComponent>
+        return (
+            <SuccessOrderComponent>
+                <p className='successTitle'>{Strings.successOrder}</p>
+                <p className='successText'>{Strings.communicationWithManager}</p>
+                <p className='successText'>{Strings.gratitude}</p>
+            </SuccessOrderComponent>
+        )
     }
 
     if (isError) {
@@ -36,7 +34,7 @@ export const OrderModalInfo = observer(() => {
                 <p className='description'>{Strings.totalPrice} {basketStore.totalPrice} &#8381;</p>
                 <p className='description'>{Strings.countOfPositions} {basketStore.products.length}</p>
             </div>
-            <AuthButton className='loginBtn' text={Strings.confirm} onClick={createOrder} />
+            <AuthButton className='loginBtn' text={Strings.confirm} onClick={() => orderStore.createOrder()} />
         </OrderModalInfoComponent>
     )
 })
