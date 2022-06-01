@@ -56,3 +56,9 @@ export interface IOrder {
     products: IAddedProducts[],
     total: number
 }
+
+export interface IRateInfo {
+    rate: number,
+    user: number,
+    productId: number
+}

@@ -1,16 +1,19 @@
 import { makeAutoObservable } from 'mobx'
 
 import { ProductApiClass } from '../services/api/ProductApi'
+import { userStore } from './UserStore'
 import { IProduct, StatusEnum } from '../services/types'
 
 class ProductStore {
     private _products: IProduct[]
+    private _product: IProduct | null
     private _status: StatusEnum
     private _count: number
     private _page: number
 
     constructor() {
         this._products = []
+        this._product = null
         this._count = 0
         this._page = 1
         this._status = StatusEnum.initial
@@ -19,6 +22,9 @@ class ProductStore {
 
     get products() {
         return this._products
+    }
+    get product() {
+        return this._product
     }
     get status() {
         return this._status
@@ -32,6 +38,9 @@ class ProductStore {
 
     setProducts(products: IProduct[]) {
         this._products = products
+    }
+    setProduct(product: IProduct) {
+        this._product = product
     }
     setStatus(status: StatusEnum) {
         this._status = status
@@ -60,6 +69,23 @@ class ProductStore {
                 this.setPage(1)
             } else {
                 throw new Error('Products were not returned')
+            }
+        } catch (err) {
+            this.setStatus(StatusEnum.error)
+        }
+    }
+
+    async getOneProduct(productId: IProduct['id']) {
+        try {
+            this.setStatus(StatusEnum.loading)
+            if (userStore.user) {
+                const product = await ProductApiClass.getOneProduct(productId, userStore.user!.id)
+                if (product) {
+                    this.setStatus(StatusEnum.success)
+                    this.setProduct(product)
+                } else {
+                    throw new Error('Product was not returned')
+                }
             }
         } catch (err) {
             this.setStatus(StatusEnum.error)

@@ -1,7 +1,7 @@
 import { Colors } from '../../styles/colors'
 import styled from 'styled-components'
 
-const BasketComponent = styled.div`
+export const BasketComponent = styled.div`
   padding: 20px 200px;
   @media (max-width: 1440px) {
     padding: 20px 100px;
@@ -69,6 +69,8 @@ const BasketComponent = styled.div`
     border: 1px solid ${Colors.gray};
     font-weight: bold;
   }
+  .emptyBasket {
+    font-size: 22px;
+    text-align: center;
+  }
 `
-
-export default BasketComponent

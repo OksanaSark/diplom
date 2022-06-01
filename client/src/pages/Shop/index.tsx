@@ -12,7 +12,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/scrollbar'
 import 'swiper/css/pagination'
-import ShopComponent from './styles'
+import { ShopComponent } from './styles'
 
 export const Shop = observer(() => {
     const imageSources: string[] = [Images.Group, Images.Welding, Images.Stock]

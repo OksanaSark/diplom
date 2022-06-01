@@ -94,6 +94,7 @@ class BasketStore {
                     product.id !== productId
                 ))
 
+                await this.fetchBasket(userStore.user!.id)
                 this.setProducts(newBasket)
                 this.setStatus(StatusEnum.success)
             } else {

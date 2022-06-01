@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ProfileComponent = styled.div`
+export const OrdersComponent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

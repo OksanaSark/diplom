@@ -1,6 +1,7 @@
-const { Order } = require('../models/index')
-const { OrderInfo } = require('../models/index')
+const { Order, OrderInfo } = require('../models/index')
 const ApiError = require('../error/apiError')
+const getProducts = require('../helpers/getProducts')
+const getTotalOrderPrice = require('../helpers/getTotalOrderPrice')
 
 class OrderController {
     async create(req, res, next) {
@@ -21,7 +22,7 @@ class OrderController {
 
     async getAll(req, res, next) {
         try {
-            const { userId } = req.body
+            const { userId } = req.query
 
             const orders = await Order.findAll(
                 {
@@ -30,7 +31,22 @@ class OrderController {
                 }
             )
 
-            return res.json(orders)
+            const filteredOrders = orders.sort((a, b) => {
+                return (a.id < b.id) ? -1 : ((a.id > b.id) ? 1 : 0);
+            })
+
+            const result = await Promise.all(filteredOrders.map(async (order) => {
+                const products = await getProducts(userId, basket.dataValues.orderInfo, next)
+
+                return {
+                    id: order.id,
+                    date: order.updatedAt,
+                    products,
+                    total: getTotalOrderPrice(products)
+                }
+            }))
+
+            return res.json(result)
         } catch (e) {
             next(ApiError.badRequest((e.message)))
         }

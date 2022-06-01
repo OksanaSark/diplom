@@ -14,11 +14,9 @@ export const customModalStyle = {
     },
 }
 
-const AdminModalComponent = styled.div`
+export const AdminModalComponent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 30px;
 `
-
-export default AdminModalComponent

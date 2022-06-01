@@ -1,6 +1,6 @@
 export const Strings = {
     basket: 'Корзина',
-    emptyBasket: 'Корзина пуста',
+    emptyBasket: 'В корзине нет товаров',
     ordering: 'Оформление заказа',
     totalPrice: 'Общая сумма заказа:',
     countOfPositions: 'Количество выбранных позиций:',

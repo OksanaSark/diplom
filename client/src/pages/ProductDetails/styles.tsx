@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const ProductDetailsComponent = styled.div`
+export const ProductDetailsComponent = styled.div`
   display: flex;
   padding: 100px 150px;
   width: 100%;
@@ -72,5 +72,3 @@ const ProductDetailsComponent = styled.div`
     width: 50%;
   }
 `
-
-export default ProductDetailsComponent

@@ -1,8 +1,7 @@
 const { Order, OrderInfo, Product } = require('../models/index')
 const ApiError = require('../error/apiError');
-const { ProductInfo, Rating } = require('../models')
-const getRateData = require('../helpers/getRateData')
 const getTotalOrderPrice = require('../helpers/getTotalOrderPrice')
+const getProducts = require('../helpers/getProducts')
 
 class BasketController {
     async add(req, res, next) {
@@ -63,25 +62,7 @@ class BasketController {
                 }
             )
 
-            const orderInfo = basket.dataValues.orderInfo
-            const products = []
-
-            if (orderInfo.length > 0) {
-                await Promise.all(orderInfo.map(async i => {
-                    try {
-                        const product = await Product.findOne(
-                            {
-                                where: { id: i.productId },
-                                include: [{ model: ProductInfo, as: 'info' }, { model: Rating, as: 'rateInfo' }]
-                            }
-                        )
-
-                        products.push({ ...product.dataValues, rateInfo: getRateData(product.rateInfo, userId), count: i.count })
-                    } catch (e) {
-                        next(ApiError.badRequest((e.message)))
-                    }
-                }))
-            }
+            const products = await getProducts(userId, basket.dataValues.orderInfo, next)
 
             return res.json({ id: basket.dataValues.id, products, totalPrice: getTotalOrderPrice(products) })
         } catch (e) {
