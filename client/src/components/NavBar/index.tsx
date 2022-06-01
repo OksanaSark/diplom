@@ -4,6 +4,7 @@ import { Badge } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 
 import { NavBarInput } from './NavBarInput'
+import { Strings } from './strings'
 import { Icons } from '../../assets/media/icons/Icons'
 import { Images } from '../../assets/media/images/Images'
 import { Routes } from '../../routes'
@@ -31,23 +32,23 @@ export const NavBar = observer(() => {
                 <div className='logoImgContainer'>
                     <img src={Images.Logo} className='logoImg' />
                 </div>
-                <p className='logoTitle'>ЮГР</p>
+                <p className='logoTitle'>{Strings.yugr}</p>
             </NavLink>
             <NavBarInput />
             <div className='tabsContainer'>
-                <NavLink to={Routes.OrdersRoute} className='tabContainer'>
-                    <img className='ordersIcon' src={Icons.Orders} />
-                    <p className='tabTitle'>Заказы</p>
-                </NavLink>
+                {userStore.isAuth && <NavLink to={Routes.OrdersRoute} className="tabContainer">
+                    <img className="ordersIcon" src={Icons.Orders}/>
+                    <p className="tabTitle">{Strings.orders}</p>
+                </NavLink>}
                 <div className='tabContainer' onClick={authHandler}>
                     <img className='userIcon' src={Icons.User} />
-                    <p className='tabTitle'>{userStore.isAuth ? 'Профиль' : 'Войти'}</p>
+                    <p className='tabTitle'>{userStore.isAuth ? Strings.profile : Strings.logIn}</p>
                 </div>
                 {userStore.isAuth && <NavLink to={Routes.BasketRoute} className='tabContainer'>
                     <Badge badgeContent={basketStore.products.length} color='info' overlap='circular' showZero={false}>
                         <img className='basketIcon' src={Icons.Basket} />
                     </Badge>
-                    <p className='tabTitle'>Корзина</p>
+                    <p className='tabTitle'>{Strings.basket}</p>
                 </NavLink>}
             </div>
             <AuthModal isAuthModalOpen={isAuthModalOpen} setIsAuthModalOpen={setIsAuthModalOpen} />

@@ -11,6 +11,7 @@ const NavBarComponent = styled.div`
     background-color: ${Colors.black};
   .tabsContainer {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     margin-left: auto;
     width: 20%;
@@ -62,8 +63,8 @@ const NavBarComponent = styled.div`
   }
   .tabTitle {
     font-size: 14px;
+    font-weight: normal;
     margin: 0;
-    font-weight: bold;
     color: ${Colors.white};
   }
   .ordersIcon {

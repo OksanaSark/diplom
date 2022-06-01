@@ -36,13 +36,13 @@ class OrderController {
             })
 
             const result = await Promise.all(filteredOrders.map(async (order) => {
-                const products = await getProducts(userId, basket.dataValues.orderInfo, next)
+                const products = await getProducts(userId, order.dataValues.orderInfo, next)
 
                 return {
                     id: order.id,
                     date: order.updatedAt,
                     products,
-                    total: getTotalOrderPrice(products)
+                    totalPrice: getTotalOrderPrice(products)
                 }
             }))
 

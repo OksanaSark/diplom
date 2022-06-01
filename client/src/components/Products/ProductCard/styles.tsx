@@ -34,7 +34,7 @@ export const ProductCardComponent = styled.div`
     padding: 10px;
     border-top-right-radius: 35px;
     border-bottom-right-radius: 35px;
-    background: linear-gradient(30deg, ${Colors.lightGray}, ${Colors.newGrey});
+    background: linear-gradient(30deg, ${Colors.lightGray}, ${Colors.grey});
   }
   .detailsBtn {
     display: flex;

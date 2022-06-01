@@ -26,7 +26,7 @@ class RatingStore {
             const rating = await RatingApiClass.rateProduct(rateInfo)
 
             if (rating) {
-                await productStore.getOneProduct(rateInfo.productId)
+                await productStore.getProductById(rateInfo.productId)
                 this.setStatus(StatusEnum.success)
             } else {
                 throw new Error('Rating was not returned')

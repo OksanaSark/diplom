@@ -34,7 +34,7 @@ export const ProductsComponent = styled.div`
   }
   .filterTitle {
     font-size: 18px;
-    color: ${Colors.newGrey};
+    color: ${Colors.grey};
   }
   .filter {
     display: flex;
@@ -49,6 +49,7 @@ export const ProductsComponent = styled.div`
   .filterName {
     margin: 0;
     padding-right: 10px;
+    font-weight: normal;
   }
   .downArrow {
     height: 10px;
@@ -59,7 +60,7 @@ export const ProductsComponent = styled.div`
     padding: 5px 10px;
   }
   .activeFilter {
-    background: linear-gradient(to left, ${Colors.newGrey} 10%, ${Colors.gray} 75%);  
+    background: linear-gradient(to left, ${Colors.grey} 10%, ${Colors.gray} 75%);  
   }
   .categoryTitle {
     font-size: 20px;

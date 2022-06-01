@@ -33,7 +33,7 @@ export class ProductApiClass {
             throw new Error(message)
         }
     }
-    static async getOneProduct(id: number, userId?: number): Promise<IProduct | undefined> {
+    static async getProductById(id: number, userId?: number): Promise<IProduct | undefined> {
         try {
             const { data } = await axiosConfig.get(`${Routes.ProductRoute}/${id}`, { params: { userId } })
             return data

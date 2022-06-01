@@ -27,7 +27,7 @@ export const ProductCreatingForm = styled.div`
     height: 55px;
     padding: 5px 10px;
     border-radius: 15px;
-    color: ${Colors.newGrey};
+    color: ${Colors.grey};
     font-size: 16px;
     margin-top: 20px;
     margin-bottom: 10px;

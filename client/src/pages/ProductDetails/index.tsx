@@ -39,7 +39,7 @@ export const ProductDetails = observer(() => {
 
     const getProduct = () => {
         if (productId) {
-            productStore.getOneProduct(productId).then(() => productStore.setStatus(StatusEnum.initial))
+            productStore.getProductById(productId).then(() => productStore.setStatus(StatusEnum.initial))
         }
     }
 
@@ -80,7 +80,7 @@ export const ProductDetails = observer(() => {
                         <AuthButton
                             text={Strings.rate}
                             className='loginBtn'
-                            disabled={product.rateInfo.isRated}
+                            disabled={product.rateInfo.isRated || !userStore.isAuth}
                             onClick={openRatingModal}
                         />
                         <AuthButton
