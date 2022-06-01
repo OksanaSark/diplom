@@ -54,7 +54,7 @@ export interface IOrder {
     id: number,
     date: string,
     products: IAddedProducts[],
-    total: number
+    totalPrice: number
 }
 
 export interface IRateInfo {

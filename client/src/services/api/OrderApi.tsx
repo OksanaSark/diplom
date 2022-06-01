@@ -13,7 +13,7 @@ export class OrderApiClass {
     }
     static async getOrders(userId: IUser['id']): Promise<IOrder[] | void> {
         try {
-            const { data } = await authAxiosConfig.patch('/order', { params: { userId } })
+            const { data } = await authAxiosConfig.get('/order', { params: { userId } })
             return data
         } catch (err) {
             const message = 'orders getting error'

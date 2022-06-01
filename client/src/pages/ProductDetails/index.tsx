@@ -80,7 +80,7 @@ export const ProductDetails = observer(() => {
                         <AuthButton
                             text={Strings.rate}
                             className='loginBtn'
-                            disabled={product.rateInfo.isRated}
+                            disabled={product.rateInfo.isRated || !userStore.isAuth}
                             onClick={openRatingModal}
                         />
                         <AuthButton

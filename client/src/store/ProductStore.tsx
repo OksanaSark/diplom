@@ -78,14 +78,13 @@ class ProductStore {
     async getOneProduct(productId: IProduct['id']) {
         try {
             this.setStatus(StatusEnum.loading)
-            if (userStore.user) {
-                const product = await ProductApiClass.getOneProduct(productId, userStore.user!.id)
-                if (product) {
-                    this.setStatus(StatusEnum.success)
-                    this.setProduct(product)
-                } else {
-                    throw new Error('Product was not returned')
-                }
+            const product = await ProductApiClass.getOneProduct(productId, userStore.user?.id)
+
+            if (product) {
+                this.setStatus(StatusEnum.success)
+                this.setProduct(product)
+            } else {
+                throw new Error('Product was not returned')
             }
         } catch (err) {
             this.setStatus(StatusEnum.error)

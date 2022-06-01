@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 
-import OrdersHistory from '../../components/Profile/OrdersHistory'
 import { ProfileInfo } from '../../components/Profile/ProfileInfo'
 import { ProfileTabSelector, tabs } from '../../components/Profile/ProfileTabSelector'
+import { Orders } from '../Orders'
 
 import { ProfileComponent } from './styles'
 
@@ -14,7 +14,7 @@ export const Profile = observer(() => {
         <ProfileComponent>
             <ProfileTabSelector activeTab={activeTab} setActiveTab={setActiveTab} />
             {activeTab === tabs.profile && <ProfileInfo />}
-            {activeTab === tabs.orders && <OrdersHistory />}
+            {activeTab === tabs.orders && <Orders />}
         </ProfileComponent>
     )
 })

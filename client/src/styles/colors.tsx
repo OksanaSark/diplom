@@ -13,7 +13,6 @@ export const Colors = {
     grey: '#808080',
     pixelWhite: '#DBDBDB',
     unicornSilver: '#E8E8E8',
-    newGrey: '#808080',
     confidentYellow: '#FFCB15',
     darkStormy: '#354052',
     placebo: '#E7E7E7',

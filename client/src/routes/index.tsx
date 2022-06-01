@@ -1,5 +1,5 @@
 import { Basket } from '../pages/Basket'
-import Orders from '../pages/Orders'
+import { Orders } from '../pages/Orders'
 import { ProductDetails } from '../pages/ProductDetails'
 import { Profile } from '../pages/Profile'
 import { Shop } from '../pages/Shop'

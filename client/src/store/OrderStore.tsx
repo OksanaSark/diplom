@@ -3,7 +3,7 @@ import { makeAutoObservable } from 'mobx'
 import { OrderApiClass } from '../services/api/OrderApi'
 import { basketStore } from './BasketStore'
 import { userStore } from './UserStore'
-import { IOrder, StatusEnum } from '../services/types'
+import { IOrder, IUser, StatusEnum } from '../services/types'
 
 class OrderStore {
     private _status: StatusEnum
@@ -50,11 +50,11 @@ class OrderStore {
         }
     }
 
-    async fetchOrders(userId: number) {
+    async fetchOrders(userId: IUser['id']) {
         try {
             this.setStatus(StatusEnum.loading)
-
             const orders = await OrderApiClass.getOrders(userId)
+
             if (orders) {
                 this.setOrders(orders)
                 this.setStatus(StatusEnum.success)
