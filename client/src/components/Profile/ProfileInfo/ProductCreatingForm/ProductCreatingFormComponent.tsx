@@ -27,6 +27,11 @@ interface ProductFormComponentProps {
     selectImg: (event: ChangeEvent<HTMLInputElement>) => void,
 }
 
+const productFormStrings = {
+    0: Strings.ProductForm.description,
+    1: Strings.ProductForm.standard,
+}
+
 export const ProductCreatingFormComponent = observer((props: ProductFormComponentProps) => {
     const {
         formik,
@@ -35,15 +40,6 @@ export const ProductCreatingFormComponent = observer((props: ProductFormComponen
         removeInfo,
         selectImg,
     } = props
-
-    const getFieldValue = (index: number) => {
-        if (index === 0) {
-            return Strings.ProductForm.description
-        }
-        if (index === 1) {
-            return Strings.ProductForm.standard
-        }
-    }
 
     return (
         <ProductCreatingForm>
@@ -114,7 +110,7 @@ export const ProductCreatingFormComponent = observer((props: ProductFormComponen
                                 className='infoTitle'
                                 name={`productInfo[${index}].title`}
                                 type='text'
-                                value={getFieldValue(index)}
+                                value={productFormStrings[index as keyof typeof productFormStrings]}
                                 placeholder='свойство'
                                 disabled={index < 2}
                             />

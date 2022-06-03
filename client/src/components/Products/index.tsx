@@ -10,16 +10,16 @@ import { productStore } from '../../store/ProductStore'
 
 import { ProductsComponent } from './styles'
 
-export const filters = {
-    update: Strings.update,
-    rating: Strings.rating,
-    cheapPrice: Strings.cheapPrice,
-    expensivePrice: Strings.expensivePrice,
+export enum Filters {
+    update = 'По обновлению',
+    rating = 'Высокий рейтинг',
+    cheapPrice = 'Сначала дешевые',
+    expensivePrice = 'Сначала дорогие',
 }
 
 export const Products = observer(() => {
     const [activeCategoryId, setActiveCategoryId] = useState(-1)
-    const [activeFilter, setActiveFilter] = useState(filters.update)
+    const [activeFilter, setActiveFilter] = useState<Filters>(Filters.update)
 
     useEffect(() => {
         categoryStore.fetchCategories().then(() => categoryStore.setStatus(StatusEnum.initial))
@@ -36,8 +36,8 @@ export const Products = observer(() => {
         productStore.fetchProducts(categoryId)
     }
 
-    const selectFilter = (filter: string) => {
-        setActiveFilter(filter)
+    const selectFilter = (filter: keyof typeof Filters) => {
+        setActiveFilter(Filters[filter])
         productStore.filterProducts(filter, activeCategoryId)
     }
 
@@ -61,14 +61,16 @@ export const Products = observer(() => {
                     <p className='filterTitle'>{Strings.sorting}</p>
                     <FormControl size={'small'}>
                         <Select autoWidth value={activeFilter}>
-                            {Object.values(filters).map((filter: string, index: number) =>
-                                <MenuItem key={index}
-                                    value={filter}
-                                    onClick={() => selectFilter(filter)}
-                                >
-                                    {filter}
-                                </MenuItem>,
-                            )}
+                            {(Object.keys(Filters) as Array<keyof typeof Filters>)
+                                .map((filter: keyof typeof Filters, index: number) =>
+                                    <MenuItem
+                                        key={index}
+                                        value={Filters[filter]}
+                                        onClick={() => selectFilter(filter)}
+                                    >
+                                        {Filters[filter]}
+                                    </MenuItem>,
+                                )}
                         </Select>
                     </FormControl>
                 </div>
