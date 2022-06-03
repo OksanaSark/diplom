@@ -29,7 +29,7 @@ const initialProductInfo = {
 }
 
 export const ProductCreatingFormContainer = observer(() => {
-    const [productInfo, setProductInfo] = useState<IProductInfo[]>([initialProductInfo])
+    const [productInfo, setProductInfo] = useState<IProductInfo[]>([initialProductInfo, initialProductInfo])
     const isError: boolean = StatusEnum.error === productStore.status
     const isSuccess: boolean = StatusEnum.success === productStore.status
 
@@ -38,7 +38,7 @@ export const ProductCreatingFormContainer = observer(() => {
             productName: '',
             productPrice: '',
             categoryId: '',
-            productInfo: [initialProductInfo],
+            productInfo: [initialProductInfo, initialProductInfo],
             productImg: null,
         },
         onSubmit: (values: ProductFormValues, { setSubmitting }): void => {
@@ -69,7 +69,7 @@ export const ProductCreatingFormContainer = observer(() => {
         values: ProductFormValues,
     ): void => {
         setProductInfo(productInfo.filter((info) => info.id !== infoId))
-        setFieldValue('productInfo', values.productInfo.filter((info: IProductInfo) => info.id !== infoId) )
+        setFieldValue('productInfo', values.productInfo.filter((info: IProductInfo) => info.id !== infoId))
     }
 
     const selectImg = (event: ChangeEvent<HTMLInputElement>) => {

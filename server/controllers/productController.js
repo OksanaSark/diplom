@@ -14,7 +14,7 @@ const postProductInfo = async (title, description, productId) => {
 class ProductController {
     async create(req, res, next) {
         try {
-            const {name, price, categoryId, info} = req.body
+            const { name, price, categoryId, info } = req.body
             const img = req.file.originalname
 
             const product = await Product.create({ name, price, categoryId, img })
@@ -41,7 +41,7 @@ class ProductController {
         try {
             const { id } = req.params
 
-            await ProductInfo.destroy({ where: { productId: id }})
+            await ProductInfo.destroy({ where: { productId: id } })
             const deletedProduct = await Product.destroy({ where: { id }})
 
             return res.json(deletedProduct)
@@ -55,11 +55,18 @@ class ProductController {
             const { categoryId, limit = 10 , page = 1 } = req.query
             const offset = page * limit - limit
 
-            const query = categoryId > 0 ? { where: {categoryId}, limit, offset } : { limit, offset }
+            const query = categoryId > 0
+                ? { where: { categoryId }, limit, offset, include: [{ model: Rating, as: 'rateInfo' }] }
+                : { include: [{ model: Rating, as: 'rateInfo' }], limit, offset }
 
             const products = await Product.findAndCountAll(query)
 
-            return res.json(products)
+            const productsWithRateInfo = products.rows.map((product) => ({
+                    ...product.dataValues,
+                    rateInfo: getRateData(product.rateInfo)
+            }))
+
+            return res.json({ ...products, rows: productsWithRateInfo  })
         } catch (e) {
             next(ApiError.badRequest((e.message)))
         }
@@ -81,7 +88,7 @@ class ProductController {
                 return next(ApiError.notFound('Нет такой трубы, дружок!)'))
             }
 
-            return res.json({...product.dataValues, rateInfo: getRateData(product.rateInfo, userId)})
+            return res.json({ ...product.dataValues, rateInfo: getRateData(product.rateInfo, userId) })
         } catch (e) {
             next(ApiError.badRequest((e.message)))
         }

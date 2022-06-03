@@ -34,6 +34,7 @@ export const ProductsComponent = styled.div`
   }
   .filterTitle {
     font-size: 18px;
+    margin-right: 15px;
     color: ${Colors.grey};
   }
   .filter {
@@ -58,9 +59,6 @@ export const ProductsComponent = styled.div`
   .categoryContainer {
     width: 100%;
     padding: 5px 10px;
-  }
-  .activeFilter {
-    background: linear-gradient(to left, ${Colors.grey} 10%, ${Colors.gray} 75%);  
   }
   .categoryTitle {
     font-size: 20px;

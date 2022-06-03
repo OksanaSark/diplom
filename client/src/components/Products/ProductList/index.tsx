@@ -12,7 +12,6 @@ export const ProductList = observer(() => {
             {productStore.products.map((product) => {
                 return <ProductCard key={product.id} product={product} />
             })}
-
         </ProductListComponent>
     )
 })

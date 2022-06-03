@@ -1,7 +1,9 @@
+import { createMuiTheme } from '@mui/material'
+
 import { Fonts } from './assets/media/fonts/GTEestiPro/Fonts'
 
 import { createGlobalStyle } from 'styled-components'
-const Global = createGlobalStyle`
+export const Global = createGlobalStyle`
   html,
   body {
     padding: 0;
@@ -90,4 +92,11 @@ const Global = createGlobalStyle`
   }
 `
 
-export default Global
+export const muiTheme = createMuiTheme({
+    typography: {
+        'fontFamily': '"GT Eesti Pro", sans-serif',
+        'fontWeightLight': 100,
+        'fontWeightRegular': 300,
+        'fontWeightMedium': 500,
+    },
+})

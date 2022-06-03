@@ -36,6 +36,15 @@ export const ProductCreatingFormComponent = observer((props: ProductFormComponen
         selectImg,
     } = props
 
+    const getFieldValue = (index: number) => {
+        if (index === 0) {
+            return Strings.ProductForm.description
+        }
+        if (index === 1) {
+            return Strings.ProductForm.standard
+        }
+    }
+
     return (
         <ProductCreatingForm>
             <p className='title'>{Strings.ProductForm.creating}</p>
@@ -105,18 +114,22 @@ export const ProductCreatingFormComponent = observer((props: ProductFormComponen
                                 className='infoTitle'
                                 name={`productInfo[${index}].title`}
                                 type='text'
+                                value={getFieldValue(index)}
                                 placeholder='свойство'
+                                disabled={index < 2}
                             />
                             <Field
-                                className='infoDescription'
+                                className={'infoDescription'}
                                 name={`productInfo[${index}].description`}
                                 type='text'
                                 placeholder='описание'
                             />
-                            <img
-                                src={Icons.DeleteInfo}
-                                onClick={() => removeInfo(info.id, formik.setFieldValue, formik.values)}
-                            />
+                            {index > 1
+                                && <img
+                                    src={Icons.DeleteInfo}
+                                    onClick={() => removeInfo(info.id, formik.setFieldValue, formik.values)}
+                                />
+                            }
                         </div>,
                     )}
                     <AuthButton
