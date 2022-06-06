@@ -52,7 +52,7 @@ class ProductController {
 
     async getAll(req, res, next) {
         try {
-            const { categoryId, limit = 10 , page = 1 } = req.query
+            const { categoryId, limit = 9 , page = 1 } = req.query
             const offset = page * limit - limit
 
             const query = categoryId > 0

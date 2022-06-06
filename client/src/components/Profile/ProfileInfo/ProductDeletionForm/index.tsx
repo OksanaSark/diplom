@@ -15,6 +15,7 @@ export const ProductDeletionForm = observer(() => {
 
     useEffect(() => {
         categoryStore.fetchCategories().then(() => categoryStore.setStatus(StatusEnum.initial))
+        productStore.setProducts([])
     }, [])
 
     const deleteProduct = (productId: IProduct['id']) => {

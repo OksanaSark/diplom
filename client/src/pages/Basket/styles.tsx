@@ -6,8 +6,14 @@ export const BasketComponent = styled.div`
   @media (max-width: 1440px) {
     padding: 20px 100px;
   }
+  @media (max-width: 1260px) {
+    padding: 20px 35px;
+  }
   @media (max-width: 1024px) {
-    padding: 20px 100px;
+    padding: 20px 30px;
+  }
+  @media (max-width: 768px) {
+    padding: 20px 25px;
   }
   .basketTitle {
     font-weight: bold;
@@ -24,16 +30,28 @@ export const BasketComponent = styled.div`
     flex-direction: column;
     align-items: center;
     width: 60%;
+    @media (max-width: 1260px) {
+      width: 66%;
+    }
+    @media (max-width: 1024px) {
+      width: 55%;
+    }
   }
   .totalContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 215px;
+    height: 230px;
     width: 30%;
     border-radius: 15px;
     background: ${Colors.lightGray};
-    padding-bottom: 20px;
+    padding: 10px;
+    @media (max-width: 1260px) {
+      width: 30%;
+    }
+    @media (max-width: 768px) {
+      width: 40%;
+    }
   }
   .totalTitle {
     padding: 15px;
@@ -45,6 +63,9 @@ export const BasketComponent = styled.div`
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     margin: 0;
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
   .orderDescription {
     display: flex;
@@ -54,6 +75,9 @@ export const BasketComponent = styled.div`
     width: 100%;
     height: 100%;
     border-top: 4px solid ${Colors.white};
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
   .description {
     margin: 5px;
@@ -68,6 +92,9 @@ export const BasketComponent = styled.div`
     background: transparent;
     border: 1px solid ${Colors.gray};
     font-weight: bold;
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
   }
   .emptyBasket {
     font-size: 22px;

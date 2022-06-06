@@ -32,15 +32,18 @@ const NavBarComponent = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-right: auto;
-    width: 5%;
+    width: 7%;
     @media (max-width: 1800px) {
       width: 10%;
     }
+    @media (max-width: 1248px) {
+      width: 14%;
+    }
     @media (max-width: 1024px) {
-      width: 12%;
+      width: 18%;
     }
     @media (max-width: 768px) {
-      width: 20%;
+      width: 25%;
     }
   }
   .tabContainer {

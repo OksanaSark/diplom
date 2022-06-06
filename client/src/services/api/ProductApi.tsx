@@ -3,11 +3,11 @@ import { authAxiosConfig, axiosConfig } from '../axios'
 import { IProduct, IProductList } from '../types'
 
 export class ProductApiClass {
-    static async getProducts(categoryId?: IProduct['categoryId'], nextPage?: number): Promise<IProductList | void> {
+    static async getProducts(categoryId?: IProduct['categoryId'], page?: number, limit = 9): Promise<IProductList | void> {
         try {
             const response = await axiosConfig.get<IProductList>(
                 `${Routes.ProductRoute}`,
-                { params: { categoryId, nextPage },
+                { params: { categoryId, page, limit },
                 })
             return response.data
         } catch (err) {

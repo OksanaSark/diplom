@@ -11,7 +11,10 @@ export const OrdersComponent = styled.div`
     padding: 30px 100px;
   }
   @media (max-width: 1024px) {
-    padding: 30px 100px;
+    padding: 30px 50px;
+  }
+  @media (max-width: 768px) {
+    padding: 30px 20px;
   }
   .ordersContainer {
     display: flex;
@@ -25,8 +28,17 @@ export const OrdersComponent = styled.div`
     flex-direction: column;
     margin-bottom: 25px;
     border-radius: 20px;
-    width: 50%;
+    width: 60%;
     background: ${Colors.lightGray};
+    @media (max-width: 1440px) {
+      width: 65%;
+    }
+    @media (max-width: 1024px) {
+      width: 70%;
+    }
+    @media (max-width: 768px) {
+      width: 80%;
+    }
   }
   .ordersTitle {
     font-size: 20px;

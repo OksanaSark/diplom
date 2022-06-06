@@ -2,6 +2,7 @@ import React from 'react'
 import { Rating } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 
+import { useWindowDimensions } from '../../hooks/useWindowDimensions'
 import { Strings } from './strings'
 import { Icons } from '../../assets/media/icons/Icons'
 import { IAddedProducts, StatusEnum } from '../../services/types'
@@ -16,7 +17,9 @@ interface OrderCardProps {
 
 export const OrderCard = observer((props: OrderCardProps) => {
     const { order } = props
+    const { width } = useWindowDimensions()
     const standardInfo = order.info[1].description
+    const isDesktop = width > 768
 
     const updateProductCount = (id: IAddedProducts['id'], count: IAddedProducts['count']) => {
         basketStore.updateProductCount(id, count).then(() => basketStore.setStatus(StatusEnum.initial))
@@ -28,12 +31,12 @@ export const OrderCard = observer((props: OrderCardProps) => {
 
     return (
         <OrderCardComponent>
-            <img className='orderImg' src={`${process.env.REACT_APP_BASE_URL}${order.img}`} />
+            {isDesktop && <img className="orderImg" src={`${process.env.REACT_APP_BASE_URL}${order.img}`} />}
             <div className='orderInfoContainer'>
                 <div className='orderInfo'>
                     <p className='orderName'>{order.name}</p>
-                    <p>{standardInfo}</p>
-                    <Rating readOnly name="read-only" size='large' value={order.rateInfo.rate} />
+                    <p className='standardInfo'>{standardInfo}</p>
+                    <Rating readOnly name="read-only" size={isDesktop ? 'large' : 'small'} value={order.rateInfo.rate} />
                 </div>
                 <div className='orderCount'>
                     <p className='orderPrice'>{order.price * order.count} &#8381;</p>
