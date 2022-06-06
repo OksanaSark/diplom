@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pagination, PaginationItem } from '@mui/material'
+import { Pagination, PaginationItem, PaginationRenderItemParams } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 
 import { CustomSwiper } from '../../components/CustomSwiper'
@@ -15,6 +15,8 @@ export const Shop = observer(() => {
         productStore.setPage(p)
     }
 
+    const renderItem = (item: PaginationRenderItemParams) => <PaginationItem {...item} />
+
     return (
         <ShopComponent>
             <CustomSwiper />
@@ -24,11 +26,7 @@ export const Shop = observer(() => {
                 className='paginationContainer'
                 size='large'
                 count={pageCount}
-                renderItem={(item) => (
-                    <PaginationItem
-                        {...item}
-                    />
-                )}
+                renderItem={renderItem}
                 onChange={onChangePage}
             />
         </ShopComponent>
