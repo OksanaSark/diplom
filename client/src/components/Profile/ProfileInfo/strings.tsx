@@ -16,7 +16,7 @@ export const Strings = {
         label: 'Категории',
         addProperty: 'Добавить свойство',
         selectImg: 'Выберите изображение',
-        standard: 'ГОСТ',
+        standard: 'Стандарт',
         description: 'Описание',
     },
     errorMessage: 'Что-то пошло не так, повторите позже',
