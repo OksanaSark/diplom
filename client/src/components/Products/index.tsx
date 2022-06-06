@@ -26,6 +26,11 @@ export const Products = observer(() => {
         productStore.fetchProducts().then(() => productStore.setStatus(StatusEnum.initial))
     }, [])
 
+    useEffect(() => {
+        productStore.fetchProducts(activeCategoryId, productStore.page)
+            .then(() => productStore.setStatus(StatusEnum.initial))
+    }, [productStore.page, activeCategoryId])
+
     const selectCategory = (categoryId: ICategory['id']) => {
         if (categoryId === activeCategoryId) {
             setActiveCategoryId(-1)
@@ -33,7 +38,7 @@ export const Products = observer(() => {
             setActiveCategoryId(categoryId)
         }
 
-        productStore.fetchProducts(categoryId)
+        productStore.fetchProducts(categoryId, productStore.page).then(() => productStore.setStatus(StatusEnum.initial))
     }
 
     const selectFilter = (filter: keyof typeof Filters) => {

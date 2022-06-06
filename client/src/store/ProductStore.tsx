@@ -11,12 +11,14 @@ class ProductStore {
     private _status: StatusEnum
     private _count: number
     private _page: number
+    private _limit: number
 
     constructor() {
         this._products = []
         this._product = null
         this._count = 0
         this._page = 1
+        this._limit = 9
         this._status = StatusEnum.initial
         makeAutoObservable(this)
     }
@@ -36,6 +38,9 @@ class ProductStore {
     get page() {
         return this._page
     }
+    get limit() {
+        return this._limit
+    }
 
     setProducts(products: IProduct[]) {
         this._products = products
@@ -49,20 +54,20 @@ class ProductStore {
     setCount(count: number) {
         this._count = count
     }
-
     setPage(page: number) {
         this._page = page
     }
 
-    async fetchProducts(categoryId?: IProduct['categoryId'], nextPage?: number) {
+    async fetchProducts(categoryId?: IProduct['categoryId'], page?: number, limit = 9) {
         try {
             this.setStatus(StatusEnum.loading)
-            const products = await ProductApiClass.getProducts(categoryId, nextPage)
+            const products = await ProductApiClass.getProducts(categoryId, page, limit)
 
-            if (nextPage && products) {
+            if (page && products) {
                 this.setStatus(StatusEnum.success)
-                this.setProducts([...this.products, ...products.rows])
-                this.setPage(nextPage)
+                this.setProducts(products.rows)
+                this.setCount(products.count)
+                this.setPage(page)
             } else if (products) {
                 this.setStatus(StatusEnum.success)
                 this.setProducts(products.rows)

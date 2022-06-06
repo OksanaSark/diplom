@@ -7,10 +7,10 @@ const NavBarInputComponent = styled.div`
   border: 2px solid ${Colors.lighterGray};
   background-color: ${Colors.lightGray};
   border-radius: 12px;
-  display: flex;
   padding: 3px 15px;
   width: 40%;
   height: 35px;
+  display: none;
   @media (max-width: 1440px) {
     width: 45%;
   }
