@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 
+import { Filters } from '../components/Products'
 import { ProductApiClass } from '../services/api/ProductApi'
 import { userStore } from './UserStore'
 import { IProduct, StatusEnum } from '../services/types'
@@ -119,6 +120,17 @@ class ProductStore {
         } catch (err) {
             this.setStatus(StatusEnum.error)
         }
+    }
+
+    async filterProducts(filter: keyof typeof Filters, categoryId?: IProduct['categoryId']) {
+        const filters = {
+            update: () => this.fetchProducts(categoryId),
+            rating: () => this.setProducts(this.products.sort((a, b) => a.rateInfo.rate < b.rateInfo.rate ? 1 : -1)),
+            cheapPrice: () => this.setProducts(this.products.sort((a, b) => a.price > b.price ? 1 : -1)),
+            expensivePrice: () => this.setProducts(this.products.sort((a, b) => a.price > b.price ? -1 : 1)),
+        }
+
+        return filters[filter as keyof typeof Filters]()
     }
 }
 

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
+import { ThemeProvider } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 
 import { useFetchBasket } from '../../hooks/useFetchBasket'
+import { muiTheme } from '../../globalStyles'
 import { AppRouter } from '../../routes/AppRouter'
 import { userStore } from '../../store/UserStore'
 import { NavBar } from '../NavBar'
@@ -16,8 +18,10 @@ export const Main = observer(() => {
 
     return (
         <MainComponent>
-            <NavBar />
-            <AppRouter />
+            <ThemeProvider theme={muiTheme}>
+                <NavBar />
+                <AppRouter />
+            </ThemeProvider>
         </MainComponent>
     )
 })

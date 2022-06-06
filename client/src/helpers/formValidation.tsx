@@ -1,5 +1,6 @@
 import * as Yup from 'yup'
 
+// todo add validation for nested fields
 export const loginValidation = {
     email: Yup.string()
         .email('Некорректный email')

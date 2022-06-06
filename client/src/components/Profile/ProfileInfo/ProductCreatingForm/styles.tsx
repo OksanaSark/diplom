@@ -57,21 +57,21 @@ export const ProductCreatingForm = styled.div`
   }
   .infoContainer {
     display: flex;
-    justify-content: space-between;
     width: 100%;
     margin: 5px 0;
   }
   .infoTitle {
-    width: 42%;
+    max-width: 35%;
     border: 1px solid ${Colors.gray};
     padding: 10px;
     border-radius: 15px;
     font-size: 16px;
   }
   .infoDescription {
-    width: 42%;
+    width: 65%;
     border: 1px solid ${Colors.gray};
     padding: 10px;
+    margin-left: 10px;
     border-radius: 15px;
     font-size: 16px;
   }

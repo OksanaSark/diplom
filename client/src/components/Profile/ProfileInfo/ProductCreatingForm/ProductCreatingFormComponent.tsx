@@ -27,6 +27,11 @@ interface ProductFormComponentProps {
     selectImg: (event: ChangeEvent<HTMLInputElement>) => void,
 }
 
+const productFormStrings = {
+    0: Strings.ProductForm.description,
+    1: Strings.ProductForm.standard,
+}
+
 export const ProductCreatingFormComponent = observer((props: ProductFormComponentProps) => {
     const {
         formik,
@@ -105,18 +110,22 @@ export const ProductCreatingFormComponent = observer((props: ProductFormComponen
                                 className='infoTitle'
                                 name={`productInfo[${index}].title`}
                                 type='text'
+                                value={productFormStrings[index as keyof typeof productFormStrings]}
                                 placeholder='свойство'
+                                disabled={index < 2}
                             />
                             <Field
-                                className='infoDescription'
+                                className={'infoDescription'}
                                 name={`productInfo[${index}].description`}
                                 type='text'
                                 placeholder='описание'
                             />
-                            <img
-                                src={Icons.DeleteInfo}
-                                onClick={() => removeInfo(info.id, formik.setFieldValue, formik.values)}
-                            />
+                            {index > 1
+                                && <img
+                                    src={Icons.DeleteInfo}
+                                    onClick={() => removeInfo(info.id, formik.setFieldValue, formik.values)}
+                                />
+                            }
                         </div>,
                     )}
                     <AuthButton
