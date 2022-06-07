@@ -3,7 +3,7 @@ import { Button } from '@mui/material'
 import { ErrorMessage, Field, Form, FormikProps, FormikProvider } from 'formik'
 import { observer } from 'mobx-react-lite'
 
-import { IProductInfo, ProductFormValues } from './ProductCreatingFormContainer'
+import { IProductInfo, productFormStrings, ProductFormValues } from './ProductCreatingFormContainer'
 import { Icons } from '../../../../assets/media/icons/Icons'
 import { ICategory } from '../../../../services/types'
 import { categoryStore } from '../../../../store/CategoryStore'
@@ -25,11 +25,6 @@ interface ProductFormComponentProps {
         values: ProductFormValues
     ) => void,
     selectImg: (event: ChangeEvent<HTMLInputElement>) => void,
-}
-
-const productFormStrings = {
-    0: Strings.ProductForm.description,
-    1: Strings.ProductForm.standard,
 }
 
 export const ProductCreatingFormComponent = observer((props: ProductFormComponentProps) => {

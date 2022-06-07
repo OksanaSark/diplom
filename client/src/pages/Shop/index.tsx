@@ -21,14 +21,15 @@ export const Shop = observer(() => {
         <ShopComponent>
             <CustomSwiper />
             <Products />
-            <Pagination
-                page={productStore.page}
-                className='paginationContainer'
-                size='large'
-                count={pageCount}
-                renderItem={renderItem}
-                onChange={onChangePage}
-            />
+            {!!productStore.products.length
+                && (<Pagination
+                    page={productStore.page}
+                    className='paginationContainer'
+                    size='large'
+                    count={pageCount}
+                    renderItem={renderItem}
+                    onChange={onChangePage}
+                />)}
         </ShopComponent>
     )
 })

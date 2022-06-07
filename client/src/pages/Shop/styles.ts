@@ -4,6 +4,7 @@ export const ShopComponent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 150px;
+  margin-bottom: 20px;
   @media (max-width: 1760px) {
     padding: 20px 70px;
   }

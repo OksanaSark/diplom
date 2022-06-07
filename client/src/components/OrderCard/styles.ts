@@ -4,12 +4,10 @@ import styled from 'styled-components'
 export const OrderCardComponent = styled.div`
   display: flex;
   height: 155px;
+  width: 100%;
   margin-bottom: 30px;
   border: 1px solid ${Colors.gray};
   border-radius: 25px;
-  @media (max-width: 1024px) {
-    height: 170px;
-  }
   @media (max-width: 768px) {
     height: 120px;
     width: 275px;
@@ -31,6 +29,10 @@ export const OrderCardComponent = styled.div`
     background: ${Colors.lightGray};
     border-radius: 0 25px 25px 0;
     padding-bottom: 10px;
+    @media (max-width: 1024px) {
+      width: 100%;
+      border-radius: 25px;
+    }
     @media (max-width: 768px) {
       width: 100%;
       border-radius: 25px;

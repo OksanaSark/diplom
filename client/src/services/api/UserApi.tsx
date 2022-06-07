@@ -7,7 +7,7 @@ import { IUser } from '../types'
 export class UserApiClass {
     static registration = async (values: FormValues): Promise<IUser | void> => {
         try {
-            const { data } = await axiosConfig.post('/user/registration', { ...values, role: 'ADMIN' })
+            const { data } = await axiosConfig.post('/user/registration', { ...values })
             return jwt_decode(data.token)
         } catch (err) {
             const message = 'registration error'

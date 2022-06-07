@@ -5,4 +5,7 @@ export const Strings = {
     expensivePrice: 'Сначала дорогие',
     category: 'Категория',
     sorting: 'Сортировка:',
+    noCategories: 'Категории отсутствуют',
+    noProducts: 'Продукция отсутствует',
+    errorMessage: 'Что-то пошло не так, повторите позже',
 }

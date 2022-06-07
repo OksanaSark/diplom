@@ -19,7 +19,7 @@ export const OrderCard = observer((props: OrderCardProps) => {
     const { order } = props
     const { width } = useWindowDimensions()
     const standardInfo = order.info[1].description
-    const isDesktop = width > 768
+    const isDesktop = width > 1024
 
     const updateProductCount = (id: IAddedProducts['id'], count: IAddedProducts['count']) => {
         basketStore.updateProductCount(id, count).then(() => basketStore.setStatus(StatusEnum.initial))

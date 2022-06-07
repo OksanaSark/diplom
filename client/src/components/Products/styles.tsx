@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const ProductsComponent = styled.div`
   display: flex;
-  margin-top: 30px;
+  margin: 30px 0;
   border-top: 1px solid ${Colors.gray};
   padding-top: 20px ;
   .categoriesContainer {

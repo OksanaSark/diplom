@@ -46,20 +46,28 @@ export const Products = observer(() => {
         productStore.filterProducts(filter, activeCategoryId)
     }
 
+    const renderCategories = () => {
+        if (categoryStore.categories.length) {
+            return categoryStore.categories.map((category) =>
+                <div key={category.id} className='categoryContainer'>
+                    <p
+                        className={activeCategoryId === category.id ? 'category activeCategory' : 'category'}
+                        onClick={() => selectCategory(category.id)}
+                    >
+                        {category.name}
+                    </p>
+                </div>,
+            )
+        }
+
+        return <p>{Strings.noCategories}</p>
+    }
+
     return (
         <ProductsComponent>
             <div className='categoriesContainer'>
                 <p className='categoryTitle'>{Strings.category}</p>
-                {categoryStore.categories.map((category) =>
-                    <div key={category.id} className='categoryContainer'>
-                        <p
-                            className={activeCategoryId === category.id ? 'category activeCategory' : 'category'}
-                            onClick={() => selectCategory(category.id)}
-                        >
-                            {category.name}
-                        </p>
-                    </div>,
-                )}
+                {renderCategories()}
             </div>
             <div className='productsContainer'>
                 <div className='filtersContainer'>

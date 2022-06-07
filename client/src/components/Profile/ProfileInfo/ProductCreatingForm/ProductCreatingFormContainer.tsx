@@ -22,14 +22,26 @@ export interface IProductInfo {
     description: string
 }
 
-const initialProductInfo = {
+export const productFormStrings = {
+    0: Strings.ProductForm.description,
+    1: Strings.ProductForm.standard,
+}
+
+const initialProductDescriptionInfo = {
     id: Date.now(),
-    title: '',
+    title: 'Описание',
     description: '',
 }
 
+const initialProductStandardInfo = {
+    ...initialProductDescriptionInfo, title: 'Стандарт',
+}
+
 export const ProductCreatingFormContainer = observer(() => {
-    const [productInfo, setProductInfo] = useState<IProductInfo[]>([initialProductInfo, initialProductInfo])
+    const [productInfo, setProductInfo] = useState<IProductInfo[]>([
+        initialProductDescriptionInfo,
+        initialProductStandardInfo,
+    ])
     const isError: boolean = StatusEnum.error === productStore.status
     const isSuccess: boolean = StatusEnum.success === productStore.status
 
@@ -38,7 +50,7 @@ export const ProductCreatingFormContainer = observer(() => {
             productName: '',
             productPrice: '',
             categoryId: '',
-            productInfo: [initialProductInfo, initialProductInfo],
+            productInfo: [initialProductDescriptionInfo, initialProductStandardInfo],
             productImg: null,
         },
         onSubmit: (values: ProductFormValues, { setSubmitting }): void => {
