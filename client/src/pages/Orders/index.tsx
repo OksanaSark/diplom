@@ -41,9 +41,9 @@ export const Orders = observer(() => {
                     </div>
                 ),
             )
-
-            return <p>{Strings.emptyOrders}</p>
         }
+
+        return <p className='emptyOrders'>{Strings.emptyOrders}</p>
     }
 
     return (

@@ -5,16 +5,16 @@ export const OrdersComponent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 200px;
+  padding: 20px 200px;
   width: 100%;
   @media (max-width: 1440px) {
-    padding: 30px 100px;
+    padding: 20px 100px;
   }
   @media (max-width: 1024px) {
-    padding: 30px 50px;
+    padding: 20px 50px;
   }
   @media (max-width: 768px) {
-    padding: 30px 20px;
+    padding: 20px 20px;
   }
   .ordersContainer {
     display: flex;
@@ -41,7 +41,7 @@ export const OrdersComponent = styled.div`
     }
   }
   .ordersTitle {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
   }
   .orderCode {
@@ -75,6 +75,10 @@ export const OrdersComponent = styled.div`
   .totalPrice {
     margin: 0;
     padding: 15px;
+    text-align: center;
+  }
+  .emptyOrders {
+    font-size: 22px;
     text-align: center;
   }
 `
