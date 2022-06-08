@@ -1,4 +1,4 @@
-const { Order, OrderInfo, Product } = require('../models/index')
+const { Order, OrderInfo } = require('../models/index')
 const ApiError = require('../error/ApiError');
 const getTotalOrderPrice = require('../helpers/getTotalOrderPrice')
 const getProducts = require('../helpers/getProducts')
