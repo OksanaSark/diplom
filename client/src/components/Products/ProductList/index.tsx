@@ -10,7 +10,7 @@ import { Strings } from '../strings'
 import { ProductListComponent } from './styles'
 
 export interface ProductListProps {
-    isLoading: boolean
+    isCentred: boolean
 }
 
 export const ProductList = observer(() => {
@@ -36,7 +36,7 @@ export const ProductList = observer(() => {
     }
 
     return (
-        <ProductListComponent isLoading={isLoading}>
+        <ProductListComponent isCentred={!productStore.products.length}>
             {renderProducts()}
         </ProductListComponent>
     )
