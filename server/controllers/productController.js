@@ -1,5 +1,5 @@
 const { Product, ProductInfo, Rating } = require('../models/index')
-const ApiError = require('../error/apiError')
+const ApiError = require('../error/ApiError')
 const getRateData = require('../helpers/getRateData')
 
 

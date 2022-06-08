@@ -1,5 +1,5 @@
 const { Category } = require('../models/index')
-const ApiError = require('../error/apiError')
+const ApiError = require('../error/ApiError')
 const { Product } = require('../models')
 
 class CategoryController {

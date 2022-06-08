@@ -1,5 +1,5 @@
 const { Order, OrderInfo, Product } = require('../models/index')
-const ApiError = require('../error/apiError');
+const ApiError = require('../error/ApiError');
 const getTotalOrderPrice = require('../helpers/getTotalOrderPrice')
 const getProducts = require('../helpers/getProducts')
 
