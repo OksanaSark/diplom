@@ -17,8 +17,8 @@ export const Orders = observer(() => {
 
     const renderOrders = () => {
         if (orderStore.orders.length) {
-            return orderStore.orders.map((order) => {
-                return (
+            return orderStore.orders.map((order) =>
+                (
                     <div key={order.id} className='orderContainer'>
                         <div className='orderHeader'>
                             <p className='orderCode'>{Strings.orderCode} {order.id}</p>
@@ -39,8 +39,8 @@ export const Orders = observer(() => {
                             <p className='totalPrice'>{order.totalPrice} &#8381;</p>
                         </div>
                     </div>
-                )
-            })
+                ),
+            )
 
             return <p>{Strings.emptyOrders}</p>
         }

@@ -16,7 +16,14 @@ module.exports = async function (userId, orderInfo, next) {
                     }
                 )
 
-                products.push({ ...product.dataValues, rateInfo: getRateData(product.rateInfo, userId), count: i.count })
+                if (product) {
+                    products.push({
+                        ...product['dataValues'],
+                        rateInfo: getRateData(product.rateInfo, userId),
+                        count: i.count
+                    })
+                }
+
             } catch (e) {
                 next(ApiError.badRequest((e.message)))
             }
