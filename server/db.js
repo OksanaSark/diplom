@@ -10,7 +10,7 @@ module.exports = new Sequelize(
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         dialectOptions: {
-                ssl: false
+                ssl: true
                 // ssl: {
                 //         require: true,
                 //         rejectUnauthorized: false
