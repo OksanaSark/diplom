@@ -9,6 +9,10 @@ import { Strings } from '../strings'
 
 import { ProductListComponent } from './styles'
 
+export interface ProductListProps {
+    isLoading: boolean
+}
+
 export const ProductList = observer(() => {
     const isLoading = productStore.status === StatusEnum.loading
     const isError = productStore.status === StatusEnum.error
@@ -32,7 +36,7 @@ export const ProductList = observer(() => {
     }
 
     return (
-        <ProductListComponent>
+        <ProductListComponent isLoading={isLoading}>
             {renderProducts()}
         </ProductListComponent>
     )
