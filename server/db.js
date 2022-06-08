@@ -14,10 +14,6 @@ module.exports = new Sequelize(
                 require: true,
                 rejectUnauthorized: false
             }
-            // ssl: {
-            //     require: true,
-            //     // rejectUnauthorized: false
-            // }
         }
     }
 )
