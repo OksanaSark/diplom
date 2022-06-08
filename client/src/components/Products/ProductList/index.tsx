@@ -14,6 +14,14 @@ export const ProductList = observer(() => {
     const isError = productStore.status === StatusEnum.error
 
     const renderProducts = () => {
+        if (isLoading) {
+            return <CircularProgress />
+        }
+
+        if (isError) {
+            return <p>{Strings.errorMessage}</p>
+        }
+
         if (productStore.products.length && !isLoading) {
             return productStore.products.map((product) => {
                 return <ProductCard key={product.id} product={product} />
@@ -25,8 +33,6 @@ export const ProductList = observer(() => {
 
     return (
         <ProductListComponent>
-            {isLoading && <CircularProgress />}
-            {isError && <p>{Strings.errorMessage}</p>}
             {renderProducts()}
         </ProductListComponent>
     )
