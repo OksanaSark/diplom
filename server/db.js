@@ -10,10 +10,8 @@ module.exports = new Sequelize(
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         dialectOptions: {
-                ssl: {
-                        require: true,
-                        rejectUnauthorized: false
-                }
+            connectionString: process.env.DATABASE_URL || 'postgresql://postgres:<your admin password>@localhost:5432/<your db name>',
+            ssl: process.env.DATABASE_URL ? true : false
         }
     }
 )
