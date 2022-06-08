@@ -14,6 +14,10 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use('/api', routers)
 
+app.get('/', function(req, res, next) {
+    res.send('WORKING!!!');
+});
+
 app.use(errorHandler)
 
 const start = async () => {
