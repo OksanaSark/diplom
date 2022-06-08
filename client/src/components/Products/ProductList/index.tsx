@@ -14,7 +14,7 @@ export const ProductList = observer(() => {
     const isError = productStore.status === StatusEnum.error
 
     const renderProducts = () => {
-        if (productStore.products.length) {
+        if (productStore.products.length && !isLoading) {
             return productStore.products.map((product) => {
                 return <ProductCard key={product.id} product={product} />
             })
