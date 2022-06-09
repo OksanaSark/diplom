@@ -50,7 +50,7 @@ export const ProductCardComponent = styled.div`
       width: 40%;
     }
     @media (max-width: 1315px) {
-      width: 30%;
+      width: 35%;
     }
     @media (max-width: 1210px) {
       width: 45%;
@@ -81,7 +81,7 @@ export const ProductCardComponent = styled.div`
       width: 60%;
     }
     @media (max-width: 1315px) {
-      width: 70%;
+      width: 65%;
     }
     @media (max-width: 1210px) {
       width: 55%;
