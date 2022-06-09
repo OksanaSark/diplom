@@ -7,6 +7,7 @@ import { AuthButton } from '../../components/AuthModal/AuthButton'
 import { AdminModal } from '../../components/Profile/AdminModal'
 import { RatingModalInfo } from '../../components/RatingModalInfo'
 import { useCheckProductInBasket } from '../../hooks/useCheckProductInBasket'
+import { useWindowDimensions } from '../../hooks/useWindowDimensions'
 import { Strings } from './strings'
 import { addToBasket } from '../../helpers/addToBasket'
 import { IProduct, StatusEnum } from '../../services/types'
@@ -24,9 +25,11 @@ interface IState {
 export const ProductDetails = observer(() => {
     const [isRatingModalOpen, setIsRatingModalOpen] = useState<boolean>(false)
     const location = useLocation()
+    const { width } = useWindowDimensions()
     const { productId } = location.state as IState
     const isInBasket = useCheckProductInBasket(basketStore.products, productId)
     const product = productStore.product
+    const isTablet = width > 768
 
     const openRatingModal = () => {
         setIsRatingModalOpen(true)
@@ -65,9 +68,11 @@ export const ProductDetails = observer(() => {
     return (
         product && <ProductDetailsComponent>
             <div className='productContainer'>
-                <div className='imgContainer'>
-                    <img className='productImg' src={`${process.env.REACT_APP_BASE_URL}${product.img}`}/>
-                </div>
+                {isTablet && (
+                    <div className='imgContainer'>
+                        <img className='productImg' src={`${process.env.REACT_APP_BASE_URL}${product.img}`}/>
+                    </div>
+                )}
                 <div className='productInfo'>
                     <div className='infoContainer'>
                         <p className='productName'>{product.name}</p>
