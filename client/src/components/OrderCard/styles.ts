@@ -19,9 +19,7 @@ export const OrderCardComponent = styled.div`
     border-top-left-radius: 25px;
   }
   .standardInfo {
-    @media (max-width: 768px) {
-      margin: 0;
-    }
+    margin: 0;
   }
   .orderInfoContainer {
     display: flex;
