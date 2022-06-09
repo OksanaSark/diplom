@@ -16,6 +16,7 @@ export interface ProductListProps {
 export const ProductList = observer(() => {
     const isLoading = productStore.status === StatusEnum.loading
     const isError = productStore.status === StatusEnum.error
+    const isCentred = isLoading || isError || !!productStore.products.length
 
     const renderProducts = () => {
         if (isLoading) {
@@ -36,7 +37,7 @@ export const ProductList = observer(() => {
     }
 
     return (
-        <ProductListComponent isCentred={isLoading || isError}>
+        <ProductListComponent isCentred={isCentred}>
             {renderProducts()}
         </ProductListComponent>
     )
