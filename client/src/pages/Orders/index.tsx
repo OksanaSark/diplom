@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 
 import { Strings } from './strings'
 import { getDate } from '../../helpers/getDate'
+import { StatusEnum } from '../../services/types'
 import { orderStore } from '../../store/OrderStore'
 import { userStore } from '../../store/UserStore'
 
@@ -11,7 +12,7 @@ import { OrdersComponent } from './styles'
 export const Orders = observer(() => {
     useEffect(() => {
         if (userStore.user) {
-            orderStore.fetchOrders(userStore.user.id)
+            orderStore.fetchOrders(userStore.user.id).then(() => orderStore.setStatus(StatusEnum.initial))
         }
     }, [])
 
