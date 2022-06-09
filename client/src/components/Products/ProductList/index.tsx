@@ -36,7 +36,7 @@ export const ProductList = observer(() => {
     }
 
     return (
-        <ProductListComponent isCentred={!productStore.products.length}>
+        <ProductListComponent isCentred={isLoading || isError}>
             {renderProducts()}
         </ProductListComponent>
     )

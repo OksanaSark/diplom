@@ -7,6 +7,7 @@ class BasketController {
     async add(req, res, next) {
         try {
             const { orderId, productId, count = 1 } = req.body
+
             if (!orderId || !productId) {
                 next(ApiError.badRequest(('Неверные параметры')))
             }
@@ -62,9 +63,11 @@ class BasketController {
                 }
             )
 
-            const products = await getProducts(userId, basket.dataValues.orderInfo, next)
+            if (basket) {
+                const products = await getProducts(userId, basket.dataValues.orderInfo, next)
+                return res.json({ id: basket.dataValues.id, products, totalPrice: getTotalOrderPrice(products) })
+            }
 
-            return res.json({ id: basket.dataValues.id, products, totalPrice: getTotalOrderPrice(products) })
         } catch (e) {
             next(ApiError.badRequest((e.message)))
         }

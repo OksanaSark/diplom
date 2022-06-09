@@ -45,7 +45,7 @@ export class BasketApiClass {
 
     static async addProduct(productId: number, orderId: number): Promise<number | undefined> {
         try {
-            const { data } = await authAxiosConfig.post(`${Routes.BasketRoute}`, { orderId, productId })
+            const { data } = await authAxiosConfig.post(`${Routes.BasketRoute}`, { productId, orderId })
             return data
         } catch (e) {
             const message = 'error adding product to orders'

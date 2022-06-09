@@ -14,7 +14,7 @@ import { CustomSwiperComponent } from './styles'
 
 export const CustomSwiper = () => {
     const { width } = useWindowDimensions()
-    const imageSources: string[] = [Images.Welding, Images.Group, Images.Stock]
+    const imageSources: string[] = [Images.Group, Images.Welding, Images.Stock]
 
     return (
         <CustomSwiperComponent>
