@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FormControl, MenuItem, Select } from '@mui/material'
+import { CircularProgress, FormControl, MenuItem, Select, Stack } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 
 import { ProductList } from './ProductList'
@@ -18,8 +18,9 @@ export enum Filters {
 }
 
 export const Products = observer(() => {
-    const [activeCategoryId, setActiveCategoryId] = useState(-1)
+    const [activeCategoryId, setActiveCategoryId] = useState(0)
     const [activeFilter, setActiveFilter] = useState<Filters>(Filters.update)
+    const isLoading = categoryStore.status === StatusEnum.loading
 
     useEffect(() => {
         categoryStore.fetchCategories().then(() => categoryStore.setStatus(StatusEnum.initial))
@@ -32,19 +33,15 @@ export const Products = observer(() => {
     }, [productStore.page, activeCategoryId])
 
     const selectCategory = (categoryId: ICategory['id']) => {
-        if (categoryId === activeCategoryId) {
-            setActiveCategoryId(-1)
+        if (categoryId === 0) {
+            productStore.fetchProducts()
+                .then(() => productStore.setStatus(StatusEnum.initial))
         } else {
-            if (categoryId === 0) {
-                productStore.fetchProducts()
-                    .then(() => productStore.setStatus(StatusEnum.initial))
-            } else {
-                productStore.fetchProducts(categoryId, productStore.page)
-                    .then(() => productStore.setStatus(StatusEnum.initial))
-            }
-
-            setActiveCategoryId(categoryId)
+            productStore.fetchProducts(categoryId, productStore.page)
+                .then(() => productStore.setStatus(StatusEnum.initial))
         }
+
+        setActiveCategoryId(categoryId)
     }
 
     const selectFilter = (filter: keyof typeof Filters) => {
@@ -53,6 +50,14 @@ export const Products = observer(() => {
     }
 
     const renderCategories = () => {
+        if (isLoading) {
+            return (
+                <Stack alignItems='center'>
+                    <CircularProgress />
+                </Stack>
+            )
+        }
+
         if (categoryStore.categories.length) {
             return categoryStore.categories.map((category) =>
                 <div key={category.id} className='categoryContainer'>
@@ -64,9 +69,9 @@ export const Products = observer(() => {
                     </p>
                 </div>,
             )
+        } else {
+            return <p>{Strings.noCategories}</p>
         }
-
-        return <p>{Strings.noCategories}</p>
     }
 
     return (

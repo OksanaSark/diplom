@@ -4,10 +4,15 @@ import { FormValues } from '../../components/AuthModal/AuthForm'
 import { authAxiosConfig, axiosConfig } from '../axios'
 import { IUser } from '../types'
 
+enum Roles {
+    ADMIN = 'ADMIN',
+    USER = 'USER'
+}
+
 export class UserApiClass {
     static registration = async (values: FormValues): Promise<IUser | void> => {
         try {
-            const { data } = await axiosConfig.post('/user/registration', { ...values, role: 'ADMIN' })
+            const { data } = await axiosConfig.post('/user/registration', { ...values, role: Roles.ADMIN })
             return jwt_decode(data.token)
         } catch (err) {
             const message = 'registration error'
