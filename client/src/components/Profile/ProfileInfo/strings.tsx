@@ -20,4 +20,8 @@ export const Strings = {
         description: 'Описание',
     },
     errorMessage: 'Что-то пошло не так, повторите позже',
+    phoneNumber: 'Телефон',
+    email: 'Email',
+    panel: 'Панель управления',
+    logOut: 'выход',
 }

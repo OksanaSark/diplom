@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
 import { userStore } from '../../../store/UserStore'
+import { Strings } from '../ProfileInfo/strings'
 
 import ProfileTabSelectorComponent from './styles'
 
 export const tabs = {
     orders: 'История заказов',
     profile: 'Профиль',
-    logOut: 'Выйти',
 }
 interface ProfileTabSelectorProps {
     activeTab: string,
@@ -31,24 +31,21 @@ export const ProfileTabSelector = observer((props: ProfileTabSelectorProps) => {
         navigate('/')
     }
 
-    useEffect(() => {
-        if (activeTab === tabs.logOut) {
-            logOut()
-        }
-    }, [activeTab])
-
     return (
         <ProfileTabSelectorComponent>
-            {Object.values(tabs).map((tab, index) => {
-                return (
-                    <div key={index}
-                        className={activeTab === tab ? 'tab activeTab' : 'tab'}
-                        onClick={() => tabSwitcher(tab)}
-                    >
-                        <p>{tab}</p>
-                    </div>
-                )
-            })}
+            <div className='tabsContainer'>
+                {Object.values(tabs).map((tab, index) => {
+                    return (
+                        <div key={index}
+                            className={activeTab === tab ? 'tab activeTab' : 'tab'}
+                            onClick={() => tabSwitcher(tab)}
+                        >
+                            <p>{tab}</p>
+                        </div>
+                    )
+                })}
+            </div>
+            <button className='logOutBtn' onClick={logOut}>{Strings.logOut}</button>
         </ProfileTabSelectorComponent>
     )
 })

@@ -8,4 +8,5 @@ export const Strings = {
     noCategories: 'Категории отсутствуют',
     noProducts: 'Продукция отсутствует',
     errorMessage: 'Что-то пошло не так, повторите позже',
+    allCategories: 'Все категории',
 }
