@@ -32,7 +32,12 @@ export interface IProduct {
     price: number
     rateInfo: IRating
     info: IProductInfo[]
-    img: string,
+    imageData: {
+        type: string,
+        data: ArrayBuffer
+    },
+    imageName: string,
+    imageType: string,
     categoryId: number
 }
 

@@ -106,7 +106,7 @@ export const AuthForm = observer((props: AuthFormProps) => {
                         maxLength='15'
                         type='password'
                         name='password'
-                        placeholder='пароль'
+                        placeholder='password'
                     />
                     <ErrorMessage className='errorMessage' name='password' component='p'/>
                     <AuthButton

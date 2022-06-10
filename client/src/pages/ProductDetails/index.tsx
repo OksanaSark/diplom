@@ -10,6 +10,7 @@ import { useCheckProductInBasket } from '../../hooks/useCheckProductInBasket'
 import { useWindowDimensions } from '../../hooks/useWindowDimensions'
 import { Strings } from './strings'
 import { addToBasket } from '../../helpers/addToBasket'
+import { getImageSrc } from '../../helpers/getImageSrc'
 import { IProduct, StatusEnum } from '../../services/types'
 import { basketStore } from '../../store/BasketStore'
 import { productStore } from '../../store/ProductStore'
@@ -70,7 +71,7 @@ export const ProductDetails = observer(() => {
             <div className='productContainer'>
                 {isTablet && (
                     <div className='imgContainer'>
-                        <img className='productImg' src={`${process.env.REACT_APP_BASE_URL}${product.img}`}/>
+                        <img className='productImg' src={getImageSrc(product.imageData.data, product.imageType)} />
                     </div>
                 )}
                 <div className='productInfo'>

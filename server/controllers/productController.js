@@ -15,9 +15,10 @@ class ProductController {
     async create(req, res, next) {
         try {
             const { name, price, categoryId, info } = req.body
-            const img = req.file.originalname
-
-            const product = await Product.create({ name, price, categoryId, img })
+            const imageName = req.file.originalname
+            const imageType = req.file.mimetype
+            const imageData = req.file.buffer
+            const product = await Product.create({ name, price, categoryId, imageName, imageType, imageData })
 
             if (info) {
                 const parsedInfo = JSON.parse(info)

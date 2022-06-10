@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { useWindowDimensions } from '../../hooks/useWindowDimensions'
 import { Strings } from './strings'
 import { Icons } from '../../assets/media/icons/Icons'
+import { getImageSrc } from '../../helpers/getImageSrc'
 import { IAddedProducts, StatusEnum } from '../../services/types'
 import { basketStore } from '../../store/BasketStore'
 import { TooltipButton } from '../TooltipButton'
@@ -31,7 +32,7 @@ export const OrderCard = observer((props: OrderCardProps) => {
 
     return (
         <OrderCardComponent>
-            {isDesktop && <img className="orderImg" src={`${process.env.REACT_APP_BASE_URL}${order.img}`} />}
+            {isDesktop && <img className="orderImg" src={getImageSrc(order.imageData.data, order.imageType)} />}
             <div className='orderInfoContainer'>
                 <div className='orderInfo'>
                     <p className='orderName'>{order.name}</p>

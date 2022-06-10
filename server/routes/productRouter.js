@@ -5,10 +5,8 @@ const productController = require('../controllers/productController')
 const authMiddleware = require('../middleware/authMiddleware')
 const roleMiddleware = require('../middleware/roleMiddleware')
 
-const upload = multer({storage: multer.diskStorage({
-        destination: function (req, file, callback) { callback(null, './static/')},
-        filename: function (req, file, callback) {callback(null, file.originalname)}})
-}).single('img');
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage }).single('img')
 
 router.get('/', productController.getAll)
 router.get('/:id', productController.getOne)
