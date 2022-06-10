@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 
 import { CategoryForm } from './CategoryForm'
 import { ProductDeletionForm } from './ProductDeletionForm'
+import { Strings } from './strings'
 import { ProductCreatingFormContainer } from './ProductCreatingForm/ProductCreatingFormContainer'
 import { Images } from '../../../assets/media/images/Images'
 import { StatusEnum } from '../../../services/types'
@@ -80,11 +81,11 @@ export const ProfileInfo = observer(() => {
                     <img src={Images.User} className='userImg' />
                     <p className='userName'>{user?.firstName} {user?.lastName}</p>
                 </div>
-                <p className='info'>Телефон<span>{user?.phoneNumber}</span></p>
-                <p className='info'>Email<span className='phone'>{user?.email}</span></p>
+                <p className='info'>{Strings.phoneNumber}<span>{user?.phoneNumber}</span></p>
+                <p className='info'>{Strings.email}<span className='phone'>{user?.email}</span></p>
             </div>
             {user?.role === 'ADMIN' && <div className='adminPanelContainer'>
-                <p className='title'>Панель управления</p>
+                <p className='title'>{Strings.panel}</p>
                 <div className='optionsContainer'>
                     {adminOptions.map((item: IAdminOption, index: number) =>
                         <React.Fragment key={index}>

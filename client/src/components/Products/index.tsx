@@ -35,10 +35,16 @@ export const Products = observer(() => {
         if (categoryId === activeCategoryId) {
             setActiveCategoryId(-1)
         } else {
+            if (categoryId === 0) {
+                productStore.fetchProducts()
+                    .then(() => productStore.setStatus(StatusEnum.initial))
+            } else {
+                productStore.fetchProducts(categoryId, productStore.page)
+                    .then(() => productStore.setStatus(StatusEnum.initial))
+            }
+
             setActiveCategoryId(categoryId)
         }
-
-        productStore.fetchProducts(categoryId, productStore.page).then(() => productStore.setStatus(StatusEnum.initial))
     }
 
     const selectFilter = (filter: keyof typeof Filters) => {
@@ -67,6 +73,14 @@ export const Products = observer(() => {
         <ProductsComponent>
             <div className='categoriesContainer'>
                 <p className='categoryTitle'>{Strings.category}</p>
+                <div className='categoryContainer'>
+                    <p
+                        className={activeCategoryId === 0 ? 'category activeCategory' : 'category'}
+                        onClick={() => selectCategory(0)}
+                    >
+                        {Strings.allCategories}
+                    </p>
+                </div>
                 {renderCategories()}
             </div>
             <div className='productsContainer'>
